@@ -58,6 +58,7 @@ HTML:
     
     EXAMPLE:
       class="thisIsAClass" id="ThisIsAnID"
+      
 6.) The script element MUST be loaded at the bottom of the <body> tag.
 
 
