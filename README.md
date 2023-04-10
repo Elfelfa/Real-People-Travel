@@ -32,3 +32,15 @@ THEN it will populate a roadmap of my itinerary based on distance from one anoth
 WHEN I press "Save my itinerary"
 THEN I see a simple list of my selected options and my itinerary will be save to local storage, and from then on populate in the collapsible sidebar
 ```
+
+## Project Requirements
+```
+01.) MUST use at least two server-side APIs
+02.) MUST use a CSS framework *other than* Bootstrap
+03.) MUST use client-side storage to store persistent data
+04.) MUST have a polished UI
+05.) MUST have good quality coding standards (indentation, scoping, naming, etc.)
+06.) MUST NOT use alerts, confirms, or prompts (look into *modals*)
+07.) MUST be deployed to GitHub Pages
+08.) MUST be interactive (i.e: accept and respond to user input)
+```
