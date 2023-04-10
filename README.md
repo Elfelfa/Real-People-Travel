@@ -44,3 +44,41 @@ THEN I see a simple list of my selected options and my itinerary will be save to
 07.) MUST be deployed to GitHub Pages
 08.) MUST be interactive (i.e: accept and respond to user input)
 ```
+
+## Coding Criteria
+```
+HTML:
+
+1.) Anything inside of element tags MUST be on it's own line and indented.
+2.) ALL METADATA MUST be stored inside the <head> element
+3.) Document MUST have <!DOCTYPE>, <html>, <head>, <body>, <header>, and <main> elements
+4.) Any styling other than CSS framework styling classes MUST NOT be done in the HTML file
+5.) Any elements with IDs or Classes will follow a naming convention that start with a lowercase letter, 
+    have no spaces, and each new work starting with an uppercase letter.
+    
+    EXAMPLE:
+      class="thisIsAClass" id="ThisIsAnID"
+6.) The script element MUST be loaded at the bottom of the <body> tag.
+
+
+CSS:
+
+1.) All styling should be listed in the order of elements, classes, IDs from top to bottom of the file.
+2.) All styling should be done in the order of sizing, positioning, coloring, formatting.
+3.) There MUST NOT be ANY empty element, class, or ID stylings.
+
+
+JavaScript:
+
+1.) All functions and variables will follow a naming convention that start with a lowercase letter, 
+    have no spaces, and each new work starting with an uppercase letter.
+    
+    EXAMPLE:
+      function myFunction()
+      var myNumber
+      
+2.) All global variables MUST be declared at the top of the file.
+3.) All executable code MUST be placed inside a function that does not fire until the page has finished loading.
+4.) All reusable code MUST be placed inside a callable function.
+5.) Anything inside of a function, or if, for, switch, case, and other operators MUST be on it's own line and indented.
+```
