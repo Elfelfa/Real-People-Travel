@@ -1,6 +1,18 @@
+:root {
+    --text: #E9FF4F;
+    --menubackground: #3D3F2C;
+    --namebackground: #7E8784;
+    --black: #000000;
+  }
+
 body {
   background-image: url("https://media-public.canva.com/uP7i8/MADyRluP7i8/1/s2.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
 }
+
+.title {
+    
+}
+
