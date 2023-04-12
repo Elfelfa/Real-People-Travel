@@ -4,6 +4,7 @@ function storeName(){
     var inputName = document.getElementById("your-name").value;
     localStorage.setItem("your-name", stringify(inputName));
 };
+
 function getName(){
  var add
 }
