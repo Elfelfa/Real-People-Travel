@@ -21,13 +21,13 @@ body {
     
 }
 
-.subtitle {
+.subtitle, .subtitle2 {
     color: var(--text);
     font-family: var(--font2);
     font-size: 70px;
 }
 
-.letsPlan {
+.letsPlan, .next {
     color: var(--text);
     background-color: var(--menubackground);
     font-family: var(--font1);
@@ -46,3 +46,16 @@ body {
     border-radius: 50px;
 }
 
+.name {
+    color: var(--text);
+    background-color: var(--namebackground);
+    font-family: var(--font1);
+    font-size: 25px;
+    border: 3px solid var(--text);
+    border-radius: 50px
+}
+
+::placeholder { /* Chrome/Opera/Safari */
+    color: var(--text);
+  }
+  
