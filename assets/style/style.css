@@ -17,14 +17,14 @@ body {
 .title {
     color: var(--text);
     font-family: var(--font1);
-    font-size: 25px;
+    font-size: 30px;
     
 }
 
 .subtitle, .subtitle2 {
     color: var(--text);
     font-family: var(--font2);
-    font-size: 70px;
+    font-size: 120px;
 }
 
 .letsPlan, .next {
