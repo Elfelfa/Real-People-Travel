@@ -80,8 +80,8 @@ function sceneTransition()
 //
 function fadeOut (e)
 {
-    if (!e.style.opacity) {
-        e.style.opacity = 0;
+    if (e.style.opacity == "undefined" || !e.style.opacity) {
+        e.setAttribute("style", "opacity: 1;");
     }
 
     var fadeEffect = setInterval(function ()
