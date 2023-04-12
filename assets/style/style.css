@@ -3,39 +3,46 @@
     --menubackground: #3D3F2C;
     --namebackground: #7E8784;
     --black: #000000;
-    --font1: "Open Sans",serif;
-    --font2: "Inria Serif",serif;
-  }
-
-body {
-  background-image: url("https://media-public.canva.com/uP7i8/MADyRluP7i8/1/s2.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-position-y: center;
+    --font1: "Open Sans", serif;
+    --font2: "Inria Serif", serif;
 }
 
-.title, .options {
+body {
+    background-image: url("https://media-public.canva.com/uP7i8/MADyRluP7i8/1/s2.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position-y: center;
+}
+
+.title,
+.options {
     color: var(--text);
     font-family: var(--font1);
     font-size: 30px;
-    
+
 }
 
-.subtitle, .subtitle2, .subtitle3, .subtitle4 {
+.subtitle,
+.subtitle2,
+.subtitle3,
+.subtitle4 {
     color: var(--text);
     font-family: var(--font2);
     font-size: 120px;
 }
 
-.letsPlan, .next, .search {
+.letsPlan,
+.next,
+.search {
     color: var(--text);
     background-color: var(--menubackground);
     font-family: var(--font1);
     font-size: 25px;
     border: 3px solid var(--text);
     border-radius: 50px;
-    
+
+
 }
 
 .asideMenu {
@@ -56,12 +63,17 @@ body {
     border-radius: 50px
 }
 
-::placeholder { /* Chrome/Opera/Safari */
+::placeholder {
+    /* Chrome/Opera/Safari */
     color: var(--text);
-  }
+}
 
-  .form {
-   display: flex;
-   float:left;
-  }
-  
+.form {
+    display: flex;
+    float: left;
+}
+
+.dCard {
+    border: 3px solid var(--text);
+    border-radius: 50px;
+}
