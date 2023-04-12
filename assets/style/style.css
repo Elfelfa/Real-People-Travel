@@ -22,13 +22,13 @@ body {
     
 }
 
-.subtitle, .subtitle2 {
+.subtitle, .subtitle2, .subtitle3 {
     color: var(--text);
     font-family: var(--font2);
     font-size: 120px;
 }
 
-.letsPlan, .next {
+.letsPlan, .next, .search {
     color: var(--text);
     background-color: var(--menubackground);
     font-family: var(--font1);
@@ -58,5 +58,10 @@ body {
 
 ::placeholder { /* Chrome/Opera/Safari */
     color: var(--text);
+  }
+
+  .form {
+   display: flex;
+   float:left;
   }
   
