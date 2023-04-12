@@ -37,7 +37,7 @@ function createCards(c) {
         explore.classList.add('explore')// do to other add lists below
 
         image.src= cardData.image
-        name.innerText = `City: ${cardData.name}`
+        name.innerText = `${cardData.name}`
         explore.textContent = 'Explore'
 
       div.appendChild(image)
@@ -51,7 +51,7 @@ function createCards(c) {
         } , false); //use the anonymous function - the function with no name
     });
   };
-  //
+  //john checked and this first one kinda works
 
   function exploreDescription(cardData){//put within event lisener above or keep down here?
   /////////////////////////////////////not sure what to put in the green color spaces 
@@ -63,22 +63,22 @@ function createCards(c) {
         largeDivBackImg.classList = 'large-bg' 
         addItenBtn.classList = 'add-to-progress'//needed bc it will be bigger than the explore buttons
 
-    description.innerText =`Discription: ${description}`
+    description.innerText =`Discription: ${cardData.description}`
 
         div.appendChild(description)
         div.appendChild(addItenBtn)//not sure if needed
         //add event listener to add picture to progress bar? 
-        document.getElementsByClassName('add-to-progress').addEventListener('click', progessBarImg)
+        document.addEventListener
         //store to loacl storage 
     });
   };
 
-  function progressBarImg (img){ // add into event listener???
-    img.forEach(add => {
+  //function progressBarImg (img){ // add into event listener???
+    //img.forEach(add => {
         //create div input?
         //pull image and put it into image bar
-    });
-  };
+    //});
+ // };
 
 
 
