@@ -13,29 +13,34 @@
 </head>
 
 <body>
-
-   <div class="container">
-      <div class="outer-container">
-         <div class="inner-container">
+   <aside class="m-12 mx-18 grid grid-cols-1 place-items-end h-5">
+      <button class="asideMenu px-4">Menu</button>
+   </aside>
+   <div>
+      <div>
+         <div>
             <main>
-               <section class="main-content">
-                  <h1 class="title" id="title">Real People Travel</h1>
-                  <h2 class="subtitle">Adventure is One Itenary Away</h2>
-                  <button class="letsPlan" id="letsPlan">Let's Plan</button>
+               <section class="main-content mt-60 container mx-auto">
+                  <h1 class="title mx-8 w-100 flex justify-center" id="title">Real People Travel</h1>
+                  <div class="mt-40 flex justify-center">
+                     <h2 class="subtitle text-center">Adventure is One Itinerary Away</h2>
+                  </div>
+                  <div class="mt-6 flex justify-center">
+                     <button class=" px-12 py-1 letsPlan justify-center" id="letsPlan">Let's Plan</button>
+                  </div>
+                  
                </section>
-               <section class="sec-content">
-                  <h2 class="subtitle2" id="subtitle2">Let's begin</h2>
+               <section class="hidden sec-content">
+                  <h2 class=" subtitle2" id="subtitle2">Let's begin</h2>
                   <label class="block">
-                     <input type="text" class="name" placeholder="Your Name" /></label>
-                  <button class="next" id="next">Next!</button>
+                     <input type="text" class="name text-center" placeholder="Your Name" /></label>
+                  <button class="next px-3" id="next">Next!</button>
                </section>
             </main>
          </div>
       </div>
    </div>
-   <aside>
-      <button class="asideMenu">Menu</button>
-   </aside>
+   
 
    <script src="https://code.jquery.com/jquery-3.6.4.min.js%22%3E"></script>
    <script src="./assets/js/script.js"></script>
