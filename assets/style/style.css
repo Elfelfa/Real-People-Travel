@@ -12,22 +12,23 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+  background-position-y: center;
 }
 
-.title {
+.title, .options {
     color: var(--text);
     font-family: var(--font1);
-    font-size: 25px;
+    font-size: 30px;
     
 }
 
-.subtitle {
+.subtitle, .subtitle2, .subtitle3, .subtitle4 {
     color: var(--text);
     font-family: var(--font2);
-    font-size: 70px;
+    font-size: 120px;
 }
 
-.letsPlan {
+.letsPlan, .next, .search {
     color: var(--text);
     background-color: var(--menubackground);
     font-family: var(--font1);
@@ -46,3 +47,21 @@ body {
     border-radius: 50px;
 }
 
+.name {
+    color: var(--text);
+    background-color: var(--namebackground);
+    font-family: var(--font1);
+    font-size: 25px;
+    border: 3px solid var(--text);
+    border-radius: 50px
+}
+
+::placeholder { /* Chrome/Opera/Safari */
+    color: var(--text);
+  }
+
+  .form {
+   display: flex;
+   float:left;
+  }
+  

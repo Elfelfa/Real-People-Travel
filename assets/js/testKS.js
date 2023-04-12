@@ -5,8 +5,6 @@ function storeName(){
     window.localStorage.setItem("your-name", stringify(inputName));
 };
 
-    
-
 function getName(){
     var addName = document.createElement('h3'); 
 
