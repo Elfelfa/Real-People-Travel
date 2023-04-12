@@ -2,10 +2,20 @@
 //add onclick="storeName()" to htmlbutton for storename
 function storeName(){
     var inputName = document.getElementById("your-name").value;
-    localStorage.setItem("your-name", stringify(inputName));
+    window.localStorage.setItem("your-name", stringify(inputName));
 };
+
+    const personalName = document.getElementById('per-name')
+
 function getName(){
- var add
+ var addName = document.createElement('h3'); //id '#per-name'
+
+ addName.classList = 'person-nameh3'
+
+ window.onLoad = function (){
+    document.getElementsByClassName('person-nameh3').innerText = localStorage.getItem('your-name');
+ };
+
 }
 
 fetch('API_URL')
@@ -18,14 +28,14 @@ function createCards(c) {
     c.forEach(cardData => {
       const div = document.createElement('div');
       const image = document.createElement('img');
-      const name = document.createElement('h3');
+      const name = document.createElement('h4');
       const explore = document.createElement('button');
 
         div.classList = 'card'
         image.classList = 'card-img'//same image for exploreDescription bg img and progess bar 
         /////////////////////////////collab with kolt on how we are going to do this
         explore.classList = 'explore'
-        
+
         image.src = card.image
         name.innerText = `City: ${name}`
         explore.textContent = 'Explore'
@@ -44,7 +54,7 @@ function createCards(c) {
   /////////////////////////////////////not sure what to put in the green color spaces 
                                         ){
         cardData.forEach( explore => {
-    const description = document.createElement('h4');//not h3 bc it needs to be bigger than h3
+    const description = document.createElement('h5');//not h3 bc it needs to be bigger than h3
     const addItenBtn = document.createElement('button');
     const largeDivBackImg = document.createElement('img');
 
