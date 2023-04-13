@@ -24,9 +24,7 @@ body {
 }
 
 .subtitle,
-.subtitle2,
-.subtitle3,
-.subtitle4 {
+.subtitle2 {
     color: var(--text);
     font-family: var(--font2);
     font-size: 120px;
@@ -77,3 +75,34 @@ body {
     border: 3px solid var(--text);
     border-radius: 50px;
 }
+
+.yourName {
+    color: var(--menubackground);
+    font-family: var(--font1);
+    font-size: 50px;
+}
+
+.subtitle3,
+.subtitle4 {
+    color: var(--text);
+    font-family: var(--font2);
+    font-size: 100px;
+}
+
+.bar1,
+.bar2,
+.bar3,
+.bar4,
+.bar5 {
+    background-color: var(--menubackground);
+    border-top: 5px solid var(--namebackground);
+    border-bottom: 5px solid var(--namebackground);
+}
+
+.bar2,
+.bar3,
+.bar4,
+.bar5 {
+    border-left: 5px solid var(--namebackground);
+}
+
