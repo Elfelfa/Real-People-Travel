@@ -365,22 +365,11 @@ function createCards() {
         const div = document.createElement('div');
         const image = document.createElement('img');
         const name = document.createElement('h4');
-        const refreshBtn = document.createElement('button');
-        const imDoneBtn = document.createElement('button');
-        const addItinBtn = document.createElement('button');
         
         div.classList.add('dCard flex-initial w-60 h-60 m-5');
 
         image.src = tempLocations[r].image;
         name.innerText = tempLocations[r].name;
-        
-        refreshBtn.classList.add('refresh');
-        addItinBtn.classList.add('addToItin');
-        imDoneBtn.classList.add('imDone');
-
-        refreshBtn.innerText = "Refresh";
-        addItinBtn.innerText = "Add To Itinerary";
-        imDoneBtn.innerText = "I'm Done";
 
         div.appendChild(image);
         div.appendChild(name);
