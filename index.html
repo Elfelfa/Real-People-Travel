@@ -17,8 +17,8 @@
    <aside class="asideMenu m-12 mx-18 grid grid-cols-1 place-items-end h-5">
       <div class="w-screen h-screen flex items-start justify-end">
          <div onclick="toggleSlideover()" class="cursor-pointer px-5 py-2">Stored Itineraries</div>
-         <div id="slideover-container" class="w-full h-full fixed inset-0 invisible">
-           <div onclick="toggleSlideover()" id="slideover-bg" class="w-full h-full duration-500 ease-out transition-all inset-0 absolute bg-gray-900 opacity-0"></div>
+         <div id="slideoverContainer" class="w-full h-full fixed inset-0 invisible">
+           <div onclick="toggleSlideover()" id="slideoverBg" class="w-full h-full duration-500 ease-out transition-all inset-0 absolute bg-gray-900 opacity-0"></div>
            <div onclick="toggleSlideover()" id="slideover" class="slideover w-96 h-full absolute right-0 duration-300 ease-out transition-all translate-x-full">
                <div class="absolute cursor-pointer text-gray-600 top-0 w-8 h-8 flex items-center justify-center right-0 mt-5 mr-5">
                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
@@ -37,7 +37,7 @@
          <div>
             <main>
                <!----------Page 1---------->
-               <section class="hidden main-content mt-52 container mx-auto" id="pageOne">
+               <section class="main-content mt-52 container mx-auto" id="pageOne">
                   <h1 class="title mx-8 flex justify-center" id="title">Real People Travel</h1>
                   <div class=" justify-center">
                      <h2 class="subtitle text-center ">Adventure is One</h2>
@@ -52,8 +52,7 @@
                <section class="hidden sec-content mt-52 container mx-auto" id="pageTwo">
                   <h2 class=" subtitle2 mx-8 flex justify-center" id="subtitle2">Let's begin</h2>
                   <div class=" justify-center">
-                  
-                        <input type="text" class="name text-center px-14 py-1 mt-5" placeholder="Your Name" /></label>
+                        <input type="text" class="name text-center px-14 py-1 mt-5" placeholder="Your Name" id="yourName"/>
                   </div>
                   <div class="text-center mt-8">
                      <button class="next px-14" id="pageTwoNext">Next!</button>
@@ -64,22 +63,13 @@
                <section class="hidden trd-content -mt-20 container mx-auto" id="pageThree">
                   <h2 class=" subtitle3 flex justify-center" id="subtitle3">Select a Destination</h2>
                   <div class="flex justify-center">
-                     <div class="text-center">
-                        <input type="text" class="name text-center mt-6 px-16 py-1" placeholder="desired destination" />
-                        <button class="search px-14 py-1 ml-10" id="search">Search</button>
+                     <div class="text-center" id="citySearchContainer">
+                        <input type="text" class="name text-center mt-6 px-16 py-1" id="pgThreeSearch" placeholder="desired destination" />
+                        <button class="search px-14 py-1 ml-10" id="pgThreeSearchBtn">Search</button>
                      </div>
                   </div>
                   <div class="flex flex-wrap mt-10 justify-center" id="cardsContainer">
-                     <div class="dCard flex-initial w-60 h-60 m-5"></div>
-                     <div class="dCard flex-initial w-60 h-60 m-5"></div>
-                     <div class="dCard flex-initial w-60 h-60 m-5"></div>
-                     <div class="dCard flex-initial w-60 h-60 m-5"></div>
-                     <div class="dCard flex-initial w-60 h-60 m-5"></div>
-                     <div class="dCard flex-initial w-60 h-60 m-5"></div>
-                     <div class="dCard flex-initial w-60 h-60 m-5"></div>
-                     <div class="dCard flex-initial w-60 h-60 m-5"></div>
-                     <div class="dCard flex-initial w-60 h-60 m-5"></div>
-                     <div class="dCard flex-initial w-60 h-60 m-5"></div>
+                     
                   </div>
                </section>
                
@@ -113,10 +103,10 @@
                </section>
 
                <!----------Page 5---------->
-               <section>
+               <section class="hidden">
                   <section class="-mt-20 container mx-auto" id="pageFive">
                      <h2 class=" subtitle5 text-center" id="subtitle5">Here is your Itinerary,</h2>
-                     <h1 class="yourName flex justify-center" id="your-name">Roy Hargrave</h1>
+                     <h1 class="yourName flex justify-center" id="perName"></h1>
                   </section>
                   <section class="yourDestination container mx-auto">   
                      <div class="flex mt-8 justify-center">
@@ -139,7 +129,6 @@
    </div>
 
 
-   <script src="https://code.jquery.com/jquery-3.6.4.min.js%22%3E"></script>
    <script src="./assets/js/script.js"></script>
 </body>
 
