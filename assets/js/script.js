@@ -43,8 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
         event.stopPropagation();
         var inputName = nameInput.value.trim();
 
-        if (inputName !== '')
-        {
+        if (inputName !== '') {
             storeName(inputName);
             sceneTransition();
         };
@@ -54,8 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
         event.stopPropagation();
         var isValid;
 
-        if (pgThreeSearch.value.trim() !== '')
-        {
+        if (pgThreeSearch.value.trim() !== '') {
             getStarterLocation(pgThreeSearch.value.trim());
         };
     });
@@ -345,61 +343,40 @@ function createCards() {
     var generatedDex = [];
     var iteration = 0;
 
-    var loadImages = setInterval(function(){
-        if (iteration < 10)
-        {
-            
-            var r;
-            var t = false;
-            while (true) {
-                r = Math.floor(Math.random() * tempLocations.length);
+    var loadImages = setInterval(function () {
+        if (iteration < 10 && iteration < tempLocations.length) {
 
-                for (var k = 0; k < generatedDex.length; k++) {
-                    if (r === generatedDex[k]) {
-                        t = true;
-                        break;
-                    }
-                }
+            var r = Math.floor(Math.random() * tempLocations.length);
 
-                if (t === false) {
-                    generatedDex.push(r);
-                    break;
+            for (var k = 0; k < generatedDex.length; k++) {
+                if (r == generatedDex[k]) {
+                    k = 0;
+                    r = Math.floor(Math.random() * tempLocations.length);
                 }
-            }
+            }    
+
+            generatedDex.push(r);
 
             const div = document.createElement('div');
             const image = document.createElement('img');
             const name = document.createElement('h4');
-            
-            div.classList.add('dCard', 'flex-initial', 'w-60', 'h-60', 'm-5');
-            image.setAttribute('style', 'position: absolute; height: 100%; width: 100%; object-fit: cover;');
 
-            /*fetch(tempLocations[r].image)
-                .then (function(response) {
-                    if(response.ok) {
-                        
-                    }
-                    
-                })
-                .then (function(d){
-                    console.log(d);
-                    image.src = d;
-                    div.appendChild(image);
-                })*/
-                
+            div.classList.add('dCard', 'flex-initial', 'w-60', 'h-60', 'm-5');
+
+            image.setAttribute('style', 'position: absolute; height: 100%; width: 100%; object-fit: cover;');
             image.setAttribute('crossOrigin', 'anonymous');
             image.setAttribute('referrerPolicy', 'origin');
             image.src = tempLocations[r].image;
+
             name.innerText = tempLocations[r].name;
 
             div.appendChild(name);
             div.appendChild(image);
-            
+
             cardsContainer.appendChild(div);
             iteration++
         }
-        else
-        {
+        else {
             clearInterval(loadImages);
             pageFFCards.classList.remove('hidden');
         }
@@ -408,27 +385,6 @@ function createCards() {
 
 function clearCards() {
 
-}
-
-function callBtns(b) {
-    //const error = document.createElement('h4');// 
-
-    document.addEventListener('click', '.refresh', function() {
-        clearCards();
-        createCards();
-    });
-
-    document.addEventListener('click', '.addToItin', function() {
-
-        if (attractAccom[c] >= 1) {
-            div.appendChild(b)//middle button
-            window.localStorage.setItem(attractAccom)
-        }
-    });
-
-    document.addEventListener('click', '.imDone', function() {
-        window.localStorage.setItem(attractAccom); //finish
-    });
 };
 
 function toggleSlideover() {
