@@ -353,7 +353,7 @@ function createCards() {
                     k = 0;
                     r = Math.floor(Math.random() * tempLocations.length);
                 }
-            }    
+            };
 
             generatedDex.push(r);
 
@@ -379,7 +379,7 @@ function createCards() {
         else {
             clearInterval(loadImages);
             pageFFCards.classList.remove('hidden');
-        }
+        };
     }, 5);
 };
 
