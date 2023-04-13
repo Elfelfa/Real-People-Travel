@@ -100,13 +100,11 @@ function createCards() {
           const imDoneBtn = document.createElement('button');
           const addItenBtn = document.createElement('button');
                       //can put these at top i put these here to show what they refer to
-              refreshBtn.classList.add('refresh')
-              addItenBtn.classList.add('add-to-iten')
-              imDoneBtn.classList.add('im-done')
+              refreshBtn.classList = 'refresh' 
+              addItenBtn.classList = 'add-to-iten'
+              imDoneBtn.classList = 'im-done'
               //add text in button
-              .refreshBtn.textContent =  'Refresh'
-              .addToIten.textContent = 'Add To Itinerary'
-              .imDone.textContent.add("I'm") = 'I'm Done'
+
       document.addEventListener('click', '.card', function addButtons() {
         div.appendChild(refreshBtn)
         div.appendChild(addItenBtn)
