@@ -270,24 +270,21 @@ function sceneTransition() {
             pageThree.classList.remove('hidden');
             break;
         case 3:
-            //fade out the input, fade out the cards
-            //change elments to accomodation selection
-            //fade back in the page
+            pageThree.classList.add('hidden');
+            pageFour.classList.remove('hidden');
             break;
         case 4:
-            //fade out the accomodation cards
-            //change elements to entertainment cards
+            pageFour.classList.add('hidden');
+            pageFive.classList.remove('hidden');
             //Implement way to select up to 4 cards without transition
-            //Make sure I'm finished button is added after first card selection
-            //fade back in the page
             break;
         case 5:
-            //fade out the entertainment cards
+            pageFive.classList.add('hidden');
+            pageSix.classList.remove('hidden');
             //Change elements to show complete roadmap through google matrix API
             //fade in the elements
             break;
         case 6:
-            //Fade out the entertainment cards
             //Save itinerary to sidebar
             //Change elements to You're done! Start a new itinerary? screen
             //Fade in
@@ -339,8 +336,6 @@ function storeName(inputName) {
 };
 
 function getName() {
-    var addName = document.createElement('h3');
-
     document.getElementById('perName').innerText = localStorage.getItem('yourName');
 };
 
@@ -370,22 +365,11 @@ function createCards() {
         const div = document.createElement('div');
         const image = document.createElement('img');
         const name = document.createElement('h4');
-        const refreshBtn = document.createElement('button');
-        const imDoneBtn = document.createElement('button');
-        const addItinBtn = document.createElement('button');
         
         div.classList.add('dCard flex-initial w-60 h-60 m-5');
 
         image.src = tempLocations[r].image;
         name.innerText = tempLocations[r].name;
-        
-        refreshBtn.classList.add('refresh');
-        addItinBtn.classList.add('addToItin');
-        imDoneBtn.classList.add('imDone');
-
-        refreshBtn.innerText = "Refresh";
-        addItinBtn.innerText = "Add To Itinerary";
-        imDoneBtn.innerText = "I'm Done";
 
         div.appendChild(image);
         div.appendChild(name);
