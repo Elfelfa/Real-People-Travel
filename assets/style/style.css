@@ -111,3 +111,7 @@ body {
     background-color: var(--namebackground);
     border-left: 10px solid var(--menubackground);
 }
+
+.dCard {
+    position: relative;
+}
