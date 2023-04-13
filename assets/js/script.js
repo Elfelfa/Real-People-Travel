@@ -277,19 +277,17 @@ function sceneTransition() {
             setTimeout(getNearbyHotels, 5000);
             break;
         case 4:
-            //fade out the accomodation cards
-            //change elements to entertainment cards
+            pageFour.classList.add('hidden');
+            pageFive.classList.remove('hidden');
             //Implement way to select up to 4 cards without transition
-            //Make sure I'm finished button is added after first card selection
-            //fade back in the page
             break;
         case 5:
-            //fade out the entertainment cards
+            pageFive.classList.add('hidden');
+            pageSix.classList.remove('hidden');
             //Change elements to show complete roadmap through google matrix API
             //fade in the elements
             break;
         case 6:
-            //Fade out the entertainment cards
             //Save itinerary to sidebar
             //Change elements to You're done! Start a new itinerary? screen
             //Fade in
@@ -341,8 +339,6 @@ function storeName(inputName) {
 };
 
 function getName() {
-    var addName = document.createElement('h3');
-
     document.getElementById('perName').innerText = localStorage.getItem('yourName');
 };
 
