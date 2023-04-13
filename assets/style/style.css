@@ -95,16 +95,11 @@ body {
 .bar3,
 .bar4,
 .bar5 {
-    background-color: var(--menubackground);
-    border-top: 5px solid var(--namebackground);
-    border-bottom: 5px solid var(--namebackground);
-}
-
-.bar2,
-.bar3,
-.bar4,
-.bar5 {
-    border-left: 5px solid var(--namebackground);
+    background-color: var(--namebackground);
+    border: 5px solid var(--menubackground);
+    color: var(--text);
+    font-size: 30px;
+    border-radius: 50px;
 }
 
 .slideover {

@@ -16,7 +16,7 @@
    <!----------Slideover---------->
    <aside class="asideMenu m-12 mx-18 grid grid-cols-1 place-items-end h-5">
       <div class="w-screen h-screen flex items-start justify-end">
-         <div onclick="toggleSlideover()" class="cursor-pointer px-5 py-2">Stored Itineraries</div>
+         <div onclick="toggleSlideover()" class="cursor-pointer px-5 py-2">Your Itineraries</div>
          <div id="slideover-container" class="w-full h-full fixed inset-0 invisible">
            <div onclick="toggleSlideover()" id="slideover-bg" class="w-full h-full duration-500 ease-out transition-all inset-0 absolute bg-gray-900 opacity-0"></div>
            <div onclick="toggleSlideover()" id="slideover" class="slideover w-96 h-full absolute right-0 duration-300 ease-out transition-all translate-x-full">
@@ -85,17 +85,17 @@
                </section>
                
                <!----------Page 4---------->
-               <section class="hidden">
+               <section class="">
                   <section class=" -mt-20 container mx-auto">
                      <h2 class=" subtitle4 text-center" id="subtitle4">Attractions</h2>
                      <h1 class="options -mt-5 flex justify-center" id="options">Choose up to 4</h1>
                   </section>   
                   <div class="flex flex-nowrap h-14 mt-8">
-                     <div class="bar1 grow w-1/5"> </div>
-                     <div class="bar2 grow w-1/5"> </div>
-                     <div class="bar3 grow w-1/5"> </div>
-                     <div class="bar4 grow w-1/5"> </div>
-                     <div class="bar5 grow w-1/5"> </div>
+                     <div class="bar1 grow w-1/5 text-center mx-3">Paris</div>
+                     <div class="bar2 grow w-1/5 text-center mx-3"> </div>
+                     <div class="bar3 grow w-1/5 text-center mx-3"> </div>
+                     <div class="bar4 grow w-1/5 text-center mx-3"> </div>
+                     <div class="bar5 grow w-1/5 text-center mx-3"> </div>
                   </div>
                   <section class="attractions container mx-auto">   
                      <div class="flex flex-wrap mt-8 justify-center">
@@ -114,7 +114,7 @@
                </section>
 
                <!----------Page 5---------->
-               <section>
+               <section class="hidden">
                   <section class="-mt-20 container mx-auto">
                      <h2 class=" subtitle5 text-center" id="subtitle5">Here is your Itinerary,</h2>
                      <h1 class="yourName flex justify-center" id="yourName">Roy Hargrave</h1>
@@ -139,8 +139,6 @@
       </div>
    </div>
 
-
-   <script src="https://code.jquery.com/jquery-3.6.4.min.js%22%3E"></script>
    <script src="./assets/js/script.js"></script>
 </body>
 
