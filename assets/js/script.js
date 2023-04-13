@@ -1,34 +1,233 @@
-////////////////////////////////////////////////////
-//
-//                    TO DO
-//
-//
-//              Edit fade functions to for loops
-//              Create function that adds clicked card to progress bar and itinerary array
-//              
-////////////////////////////////////////////////////
-
-function toggleSlideover(){
-   document.getElementById('slideover-container').classList.toggle('invisible');
-   document.getElementById('slideover-bg').classList.toggle('opacity-0');
-   document.getElementById('slideover-bg').classList.toggle('opacity-50');
-   document.getElementById('slideover').classList.toggle('translate-x-full');
-}
-
 //Global variables
 var currentPage = 0;
+var chosenLocation = 'Paris';
+var tempLocations = [];
 var itinerary = [];
+
+const apiKey = '&key=AIzaSyDORJkJF8s_jJJqrMWshFrJTLxMXDFhTzg';
+const corsLink = 'https://cors-anywhere.herokuapp.com/';
+const placeLink = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?';
+const placeFields = '&inputtype=textquery&fields=formatted_address%2Cname%2Cphoto%2Crating%2Copening_hours%2Cgeometry%2Cprice_level';
+const photoLink = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference=';
+
+const nearbyLink = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?';
+
+const cardsContainer = document.querySelector('#cards-container');
 
 //script.js will not execute any code until the page's DOM nodes are ready.
 //
-$(document).ready(
-    function() 
-    {
-        document.getElementById("#test").addEventListener("click", function(){
-            fadeOut()
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("test").addEventListener("click", function(){
+        fadeOut(this);
+        sceneTransition();
+    });
+});
+
+// corsLink + placeLink = https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/findplacefromtext/json?
+// chosenLocation is the location the user places into the input box.
+// placeFields = &inputtype=textquery&fields=formatted_address%2Cname%2Cphoto%2Crating%2Copening_hours%2Cgeometry%2Cprice_level
+//
+// placeFields query will grab the:
+//      Formatted address
+//      Location name
+//      Photo reference
+//      Lattitude and longitude
+//      Location rating if applicable
+//      Opening hours if applicable 
+//      Price level if applicable
+//
+function getStarterLocation ()
+{
+    //chosenLocation = document.getElementById('placeSearch').value.trim();
+
+    var locData = {
+        address: '',
+        name: '',
+        image: '',
+        lat: '',
+        lon: ''
+    };
+
+    // corsLink + photoLink = https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference=
+    // Grabs photo reference to pull an image from the places API.
+    //
+    fetch(corsLink + placeLink + 'input=' + chosenLocation + placeFields + apiKey)
+            .then(function(response) {
+                if(response.ok)
+                {
+                    console.log(response)
+
+                    response.json().then(function (data) {
+                        console.log(data);
+                        locData.address = data.candidates[0].formatted_address;
+                        locData.lat = data.candidates[0].geometry.location.lat;
+                        locData.lon = data.candidates[0].geometry.location.lng;
+                        locData.name = data.candidates[0].name;
+                        locData.image = corsLink + photoLink + data.candidates[0].photos[0].photo_reference + apiKey;
+                    });
+                };
+            });
+    itinerary.push(locData);
+    console.log(itinerary);
+    setTimeout(getNearbyHotels, 5000);
+}
+
+// corsLink + placeLink = https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?
+//  keyword = place category (hotel, monument, restaurant, museum, etc.)
+//  location = lat%lon
+//  radius in meters
+//  
+//  This will return an array of 20 results
+//
+function getNearbyHotels ()
+{
+    console.log('Start getNearbyHotels');
+    fetch(corsLink + nearbyLink + 'keyword=hotel&location=' + itinerary[0].lat + '%2C' + itinerary[0].lon + '&radius=50000' + apiKey)
+        .then(function(response) {
+            if(response.ok)
+            {
+                console.log(response);
+
+                response.json().then(function (data) {
+                    console.log(data);
+                    setTimeout('', 5000);
+
+                    data.results.forEach(loc => {
+                        var locData = {
+                            address: '',
+                            name: '',
+                            image: '',
+                            lat: '',
+                            lon: ''
+                        }
+
+                        if (loc.address)
+                        {
+                            locData.address = loc.formatted_address;
+                            
+                        }
+                        else if (loc.vicinity)
+                        {
+                            locData.address = loc.vicinity;
+                        };
+    
+                        locData.name = loc.name;
+
+                        if (locData.image)
+                        {
+                            locData.image = corsLink + photoLink + loc.photos[0].photo_reference + apiKey;
+                        }
+
+                        locData.lat = loc.geometry.location.lat;
+                        locData.lon = loc.geometry.location.lng;
+                
+                        tempLocations.push(locData);
+                    });
+
+                    console.log(tempLocations);
+                    itinerary.push(tempLocations[0]);
+                    console.log('End getNearbyHotels');
+                });
+            };
         });
-    }
-);
+    
+    setTimeout(getNearbyAttractions, 5000);
+}
+
+//  Searches for nearby attractions in a 50,000m radius around the selected hotel
+//  keyword = place category (hotel, monument, restaurant, museum, etc.)
+//  location = lat%lon
+//  radius in meters
+//  
+//  This will return an array of up to 80 results
+//
+function getNearbyAttractions ()
+{
+    
+    console.log('Start getNearbyAttractions');
+
+    tempLocations.length = 0;
+
+    var i = 0;
+
+    var myBuffer = setInterval(function () 
+    {
+        if (i < 4)
+        {
+            switch (i){
+                case 0:
+                    var currentAttr = 'tourist_attraction';
+                    break;
+                case 1:
+                    var currentAttr = 'cafe';
+                    break;
+                case 2:
+                    var currentAttr = 'art_gallery';
+                    break;
+                case 3:
+                    var currentAttr = 'museum';
+                    break;
+            }
+
+            console.log('buffering');
+            console.log('i = ' + i);
+            
+            fetch(corsLink + nearbyLink + 'keyword=' + currentAttr + '&location=' + itinerary[1].lat + '%2C' + itinerary[1].lon + '&radius=50000' + apiKey)
+            .then(function(response) {
+                if(response.ok)
+                {
+                    response.json().then(function (data) {
+                        console.log(data);
+                        setTimeout('', 5000);
+                            
+                        data.results.forEach(loc => {
+                                
+                            var locData = {
+                                address: '',
+                                name: '',
+                                image: '',
+                                lat: '',
+                                lon: ''
+                            }
+                                
+                            if (loc.business_status !== 'CLOSED_PERMANENTLY')
+                            {
+                                if (loc.address)
+                                {
+                                    locData.address = loc.formatted_address;
+                                        
+                                }
+                                else if (loc.vicinity)
+                                {
+                                    locData.address = loc.vicinity;
+                                };
+                        
+                                locData.name = loc.name;
+
+                                if (loc.photos)
+                                {
+                                    locData.image = corsLink + photoLink + loc.photos[0].photo_reference + apiKey;
+                                };
+
+                                locData.lat = loc.geometry.location.lat;
+                                locData.lon = loc.geometry.location.lng;
+                        
+                                tempLocations.push(locData);
+                            }
+                        });
+                    });
+                };
+            });
+            i++;
+        }
+        else
+        {
+            clearInterval(myBuffer);
+            console.log(tempLocations);
+            console.log('End getNearbyAttractions');
+        }
+    }, 5000);
+}
 
 //Switch case function that will determine what scene the page will
 //transition to.
@@ -45,7 +244,6 @@ function sceneTransition()
 
     switch(currentPage){
         case 1:
-            //fade out elements for splash
             //change elements to input page
             //fade back in the page
             break;
@@ -87,13 +285,13 @@ function sceneTransition()
 //
 function fadeOut (e)
 {
-    if (e.style.opacity == "undefined" || !e.style.opacity) {
-        e.setAttribute("style", "opacity: 1;");
+    if (!e.style.opacity) {
+        e.style.opacity = 1;
     }
 
     var fadeEffect = setInterval(function ()
     {
-        if (e.style.opacity > 1)
+        if (e.style.opacity <= 0)
         {
             clearInterval(fadeEffect);
         }
@@ -112,7 +310,7 @@ function fadeIn (e)
 
     var fadeEffect = setInterval(function ()
     {
-        if (e.style.opacity > 1)
+        if (e.style.opacity >= 1)
         {
             clearInterval(fadeEffect);
         }
@@ -123,18 +321,108 @@ function fadeIn (e)
     }, 50);
 }
 
-//  Create function populateCards()
-//
-//  Take input from the search bar
-//  Use that information and fetch from google API
-//  Only grab necessary fetched data from each result
-//  Place said data into objects and store them in an array
-//  Create HTML elements using data within the object of our array
-//  Each HTML element will have a data-number attribute
-//
+//add onclick="storeName()" to htmlbutton for storename
+function storeName() 
+{
+    var inputName = document.getElementById("your-name").value.trim();
+    window.localStorage.setItem("your-name", stringify(inputName));
+};
 
-//  Create function saveCard()
-//
-//  
-//
-//
+function getName()
+{
+    var addName = document.createElement('h3'); 
+
+    addName.classList = 'per-name'
+
+    window.onload = function (){
+        document.getElementsByClassName('per-name').innerText = localStorage.getItem('your-name');
+    };
+}
+
+function createCards() 
+{
+    var generatedDex = [];
+    for (let index = 0; index < 10; index++) {
+
+        var r;
+        var t = false;
+
+        while (true) {
+            r = Math.floor(Math.random() * tempLocations.length);
+          
+            for (let k =0; k < generatedDex.length; k++) {
+              if (r === generatedDex[k]) {
+                t=true;
+                break;
+              }
+            }
+
+            if (t===false) {
+                generatedDex.push(r);
+                break;
+            }
+        }
+
+        const div = document.createElement('div');
+        const image = document.createElement('img');
+        const name = document.createElement('h4');
+
+        div.classList.add('card');
+        image.classList.add('card-img')
+
+        image.src= tempLocations[r].image;
+        name.innerText = `${tempLocations[r].name}`
+        //explore.textContent = 'Explore'
+
+        div.appendChild(image)
+        div.appendChild(name)
+        cardsContainer.appendChild(div)
+        const refreshBtn = document.createElement('button');
+        const imDoneBtn = document.createElement('button');
+        const addItinBtn = document.createElement('button');
+        refreshBtn.classList = 'refresh';
+        addItinBtn.classList = 'add-to-iten';
+        imDoneBtn.classList = 'im-done';
+
+        document.addEventListener('click', '.card', function addButtons() {
+            div.appendChild(refreshBtn)
+            div.appendChild(addItinBtn)
+            //div.appendChild(imDoneBtn)//put within added iten btn
+        });
+    }
+    
+    callBtns();
+};
+
+
+
+function callBtns()
+{
+    //const error = document.createElement('h4');// 
+
+    document.addEventListener('click', '.refresh', createCards);
+
+    document.addEventListener('click', '.add-to-iten', function addedIten()
+    {
+        var attractAccom = [];
+        var c;
+
+        if (attractAccom[c] >= 1) {
+            div.appendChild(imDoneBtn)//middle button
+            window.localStorage.setItem(attractAccom)
+        }
+    });
+
+    document.addEventListener('click', '.im-done', function setStorage()
+    {
+        window.localStorage.setItem(attractAccom); //finish
+    });
+}
+
+function toggleSlideover()
+{
+    document.getElementById('slideover-container').classList.toggle('invisible');
+    document.getElementById('slideover-bg').classList.toggle('opacity-0');
+    document.getElementById('slideover-bg').classList.toggle('opacity-50');
+    document.getElementById('slideover').classList.toggle('translate-x-full');
+}
