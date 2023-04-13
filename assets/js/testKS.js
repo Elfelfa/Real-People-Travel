@@ -1,3 +1,22 @@
+///////////////////////////////////////////////////////////////////////
+//                  to do 
+//    integrate items with kolt 
+//    create function to take choices and put them in local storage
+//
+//////////////////////////////////////////////////////////////////////
+
+var currentPage = 0;
+var chosenLocation = 'Paris';
+var tempLocations = [];
+var itinerary = [];
+
+const apiKey = '&key=AIzaSyDORJkJF8s_jJJqrMWshFrJTLxMXDFhTzg';
+const corsLink = 'https://cors-anywhere.herokuapp.com/';
+const placeLink = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?';
+const placeFields = '&inputtype=textquery&fields=formatted_address%2Cname%2Cphoto%2Crating%2Copening_hours%2Cgeometry%2Cprice_level';
+const photoLink = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference=';
+
+const nearbyLink = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?';
 
 //add onclick="storeName()" to htmlbutton for storename
 function storeName(){
@@ -5,6 +24,8 @@ function storeName(){
     window.localStorage.setItem("your-name", stringify(inputName));
 };
 
+
+//put at end with last page
 function getName(){
     var addName = document.createElement('h3'); 
 
@@ -13,8 +34,16 @@ function getName(){
         window.onLoad = function (){
             document.getElementsByClassName('per-name').innerText = localStorage.getItem('your-name');
         };
+//call function to pull itenerary
+}
+
+function callIten (){
+  //var itenerary: [];
+  //itenerary.push(Json.parse(localStorage.getItem('')))
+  //local.Storage
 
 }
+
 
 //fetch('API_URL')
 //.then(response => response.json())
@@ -22,61 +51,116 @@ function getName(){
 
 const cardsContainer = document.querySelector('#cards-container');
 
-function createCards(c) {
-    c.forEach(cardData => {
+function createCards() {
+      var generatedDex = [];
+    for (let index = 0; index < 10; index++) {
+
+      var r;
+      var t = false;
+          while (true) {
+            r = Math.floor(Math.random() * tempLocations.length);
+            
+              for (let k =0; k < generatedDex.length; k++) {
+                if (r === generatedDex[k]) {
+                  t=true;
+                  break;
+                }
+            }
+                  if (t===false) {
+                    generatedDex.push(r);
+                    break;
+                  }
+          }
+
       const div = document.createElement('div');
       const image = document.createElement('img');
       const name = document.createElement('h4');
-      const explore = document.createElement('button');
+      //const explore = document.createElement('button');//made a listener for the whole div
 
         div.classList.add('card');
         image.classList.add('card-img')//same image for exploreDescription bg img and progess bar 
         /////////////////////////////collab with kolt on how we are going to do this
-        explore.classList.add('explore')// do to other add lists below
+        //explore.classList.add('explore')// do to other add lists below
 
-        image.src= cardData.image
-        name.innerText = `${cardData.name}`
-        explore.textContent = 'Explore'
+        image.src= tempLocations[r].image;
+        name.innerText = `${tempLocations[r].name}`
+        //explore.textContent = 'Explore'
 
       div.appendChild(image)
       div.appendChild(name)
-      div.appendChild(explore)
+      //div.appendChild(explore)
       cardsContainer.appendChild(div)
+                      //can put these at top i put these here to show what they refer to
+          const refreshBtn = document.createElement('button');
+          const imDoneBtn = document.createElement('button');
+          const addItenBtn = document.createElement('button');
+                      //can put these at top i put these here to show what they refer to
+              refreshBtn.classList = 'refresh' 
+              addItenBtn.classList = 'add-to-iten'
+              imDoneBtn.classList = 'im-done'
 
-      //add event listener for explore button to start explore dscription function
-        document.addEventListener('click', '.explore', function(){// if you click on the class explore within the document we will call this function
-            exploreDescription(cardData)
-        } , false); //use the anonymous function - the function with no name
-    });
+      document.addEventListener('click', '.card', function addButtons() {
+        div.appendChild(refreshBtn)
+        div.appendChild(addItenBtn)
+        //div.appendChild(imDoneBtn)//put within added iten btn
+      });
+    }
+    callButns();
   };
+
+
+
+function callButns(){
+  const error = document.createElement('h4');// 
+
+  document.addEventListener('click', '.refresh', createCards);
+
+  document.addEventListener('click', '.add-to-iten', function addedIten(){
+
+      var attractAccom = [];
+      var c;
+
+         window.localStorage.setItem(attractAccom)
+
+            if (attractAccom[c] >= 1) {
+            div.appendChild(imDoneBtn)//middle button
+            }
+  });
+
+  document.addEventListener('click', '.im-done', );
+}
+      //add event listener for explore button to start explore dscription function
+            //document.addEventListener('click', '.card', function(){// if you click on the class explore within the document we will call this function
+            //exploreDescription(tempLocations[r])
+           // } , false); //use the anonymous function - the function with no name
+  
   //john checked and this first one kinda works
 
-  function exploreDescription(cardData){//put within event lisener above or keep down here?
+  //function exploreDescription(cardData){//put within event lisener above or keep down here?
   /////////////////////////////////////not sure what to put in the green color spaces 
-        cardData.forEach( explore => {
-    const description = document.createElement('h5');//not h3 bc it needs to be bigger than h3
-    const addItenBtn = document.createElement('button');
-    const largeDivBackImg = document.createElement('img');
+        //cardData.forEach( explore => {
+    //const refreshBtn = document.createElement('button');
+    //const imDoneBtn = document.createElement('button');
+    //const addItenBtn = document.createElement('button');
+    
 
-        largeDivBackImg.classList = 'large-bg' 
-        addItenBtn.classList = 'add-to-progress'//needed bc it will be bigger than the explore buttons
+        //refreshBtn.classList = 'refresh' 
+        //addItenBtn.classList = 'add-to-iten'
+        //imDoneBtn.classList = 'im-done'
 
-    description.innerText =`Discription: ${cardData.description}`
+        //div.appendChild(refreshBtn)
+        //div.appendChild(addItenBtn)//not sure if needed
+        //div.appendChild(imDoneBtn)
 
-        div.appendChild(description)
-        div.appendChild(addItenBtn)//not sure if needed
-        //add event listener to add picture to progress bar? 
-        document.addEventListener
+        document.addEventListener('click', function setStorage(){
+          //variable of the string??
+          window.localStorage.setItem(); //finish
+        });
         //store to loacl storage 
     });
   };
 
-  //function progressBarImg (img){ // add into event listener???
-    //img.forEach(add => {
-        //create div input?
-        //pull image and put it into image bar
-    //});
- // };
+ function refreshCards
 
 
 
@@ -91,10 +175,3 @@ function createCards(c) {
         var dropdowncontent = //get infor from local storage as to what they are choosing
   }
 
- // function to store image into progress Bar upon click event (high priority) kolt is working on with but i made a function///////////
- // function to change card creater where description and button go on to top larger card (large card should be hard into html)(high priority) DONE////////////
- // side bar function to open and closed like the high score thing (low priority)
- // getname function (medium priority) /////////////////////DONE
- // kolt is doing hard api stuff 
- // 
-////////////////////////////////////ask about functions within functions within event listeners/////////////////
