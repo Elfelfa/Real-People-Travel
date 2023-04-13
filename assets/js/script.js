@@ -263,11 +263,10 @@ function sceneTransition() {
 
     switch (currentPage) {
         case 1:
-            fadeOut(pageOne);
+            pageOne.classList.add('hidden');
             pageTwo.classList.remove('hidden');
             break;
         case 2:
-            fadeOut(pageTwo);
             pageTwo.classList.add('hidden');
             pageThree.classList.remove('hidden');
             break;

@@ -12,11 +12,11 @@
    <title>Real People Travel</title>
 </head>
 
-<body>
+<body class="overflow-y-hidden">
    <!----------Slideover---------->
    <aside class="asideMenu m-12 mx-18 grid grid-cols-1 place-items-end h-5">
       <div class="w-screen h-screen flex items-start justify-end">
-         <div onclick="toggleSlideover()" class="cursor-pointer px-5 py-2">Stored Itineraries</div>
+         <div onclick="toggleSlideover()" class="cursor-pointer px-5 py-2">Itineraries</div>
          <div id="slideoverContainer" class="w-full h-full fixed inset-0 invisible">
            <div onclick="toggleSlideover()" id="slideoverBg" class="w-full h-full duration-500 ease-out transition-all inset-0 absolute bg-gray-900 opacity-0"></div>
            <div onclick="toggleSlideover()" id="slideover" class="slideover w-96 h-full absolute right-0 duration-300 ease-out transition-all translate-x-full">
@@ -37,7 +37,7 @@
          <div>
             <main>
                <!----------Page 1---------->
-               <section class="main-content mt-52 container mx-auto" id="pageOne">
+               <section class="main-content mt-44 container mx-auto" id="pageOne">
                   <h1 class="title mx-8 flex justify-center" id="title">Real People Travel</h1>
                   <div class=" justify-center">
                      <h2 class="subtitle text-center ">Adventure is One</h2>
@@ -76,12 +76,19 @@
                <section class="hidden -mt-20 container mx-auto" id="pageFourFive">
                      <h2 class="subtitle4 text-center" id="subtitleFourFive">Hotels</h2>
                      <h1 class="options -mt-5 flex justify-center" id="pgFFOptions">Choose a hotel!</h1>
+                     
                </section>
                
                   
                <section class="hidden attractions container mx-auto" id="pageFFCards">   
+                  <h2 class=" subtitle4 text-center" id="subtitle4">Attractions</h2>
+                  <h1 class="options -mt-5 flex justify-center" id="options">Choose up to 4</h1>
                   <div class="flex flex-wrap mt-8 justify-center" id="cardsContainer">
                      
+                  </div>
+                  <div class="mt-6 flex justify-center">
+                     <!-- <button class="addItin px-6 py-1 justify-center mx-5">Add to Itinerary</button> -->
+                     <button class="refreshBtn px-6 py-1 justify-center">Refresh</button>
                   </div>
                </section>
 
