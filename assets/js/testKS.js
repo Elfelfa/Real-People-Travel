@@ -1,20 +1,20 @@
 
 //add onclick="storeName()" to htmlbutton for storename
-function storeName(){
-    var inputName = document.getElementById("your-name").value;
-    window.localStorage.setItem("your-name", stringify(inputName));
-};
+//function storeName(){
+   // var inputName = document.getElementById("your-name").value;
+   // window.localStorage.setItem("your-name", stringify(inputName));
+//};
 
-function getName(){
-    var addName = document.createElement('h3'); 
+//function getName(){
+    //var addName = document.createElement('h3'); 
 
- addName.classList = 'per-name'
+//addName.classList = 'per-name'
 
-        window.onLoad = function (){
-            document.getElementsByClassName('per-name').innerText = localStorage.getItem('your-name');
-        };
+        //window.onLoad = function (){
+         //   document.getElementsByClassName('per-name').innerText = localStorage.getItem('your-name');
+       // };
 
-}
+//}
 
 //fetch('API_URL')
 //.then(response => response.json())
@@ -79,7 +79,7 @@ function createCards(c) {
  // };
 
 
-
+//brandon is looking into
   function menuButton(){
     //variable grabbing info from iteneraies in local storage
     document.getElementById('').classList.toggle('show');//put class of drop down options for local storage in ID
@@ -87,8 +87,8 @@ function createCards(c) {
   }
 
   window.onclick = function outsideMenuClick(event){
-    if (!event.target.matches())//create id for the actual drop down portion
-        var dropdowncontent = //get infor from local storage as to what they are choosing
+    //if (!event.target.matches())//create id for the actual drop down portion
+        //var dropdowncontent = //get infor from local storage as to what they are choosing
   }
 
  // function to store image into progress Bar upon click event (high priority) kolt is working on with but i made a function///////////
@@ -98,3 +98,6 @@ function createCards(c) {
  // kolt is doing hard api stuff 
  // 
 ////////////////////////////////////ask about functions within functions within event listeners/////////////////
+
+
+// create function for adding color to progress bar 
