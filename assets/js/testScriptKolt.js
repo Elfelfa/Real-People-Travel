@@ -122,7 +122,12 @@ function getNearbyHotels ()
                         };
     
                         locData.name = loc.name;
-                        locData.image = corsLink + photoLink + loc.photos[0].photo_reference + apiKey;
+
+                        if (locData.image)
+                        {
+                            locData.image = corsLink + photoLink + loc.photos[0].photo_reference + apiKey;
+                        }
+
                         locData.lat = loc.geometry.location.lat;
                         locData.lon = loc.geometry.location.lng;
                 
@@ -139,6 +144,13 @@ function getNearbyHotels ()
     setTimeout(getNearbyAttractions, 5000);
 }
 
+//  Searches for nearby attractions in a 50,000m radius around the selected hotel
+//  keyword = place category (hotel, monument, restaurant, museum, etc.)
+//  location = lat%lon
+//  radius in meters
+//  
+//  This will return an array of up to 80 results
+//
 function getNearbyAttractions ()
 {
     
@@ -202,11 +214,11 @@ function getNearbyAttractions ()
                         
                                 locData.name = loc.name;
 
-                                if (locData.photos)
+                                if (loc.photos)
                                 {
                                     locData.image = corsLink + photoLink + loc.photos[0].photo_reference + apiKey;
                                 };
-                                
+
                                 locData.lat = loc.geometry.location.lat;
                                 locData.lon = loc.geometry.location.lng;
                         
