@@ -71,7 +71,7 @@ body {
     float: left;
 }
 
-.dCard {
+.dCard, .sCard {
     border: 3px solid var(--text);
     border-radius: 50px;
 }
