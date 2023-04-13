@@ -107,3 +107,7 @@ body {
     border-left: 5px solid var(--namebackground);
 }
 
+.slideover {
+    background-color: var(--namebackground);
+    border-left: 10px solid var(--menubackground);
+}
