@@ -26,7 +26,7 @@ const pgThreeSearchContainer = document.getElementById('citySearchContainer');
 const pgThreeSearchBtn = document.getElementById('pgThreeSearchBtn');
 const pgThreeSearch = document.getElementById('pgThreeSearch');
 
-const cardsContainer = document.querySelector('#cardsContainer');
+const cardsContainer = document.getElementById('cardsContainer');
 
 //script.js will not execute any code until the page's DOM nodes are ready.
 //
