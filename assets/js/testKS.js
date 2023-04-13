@@ -34,13 +34,18 @@ function getName(){
         window.onLoad = function (){
             document.getElementsByClassName('per-name').innerText = localStorage.getItem('your-name');
         };
-//call function to pull itenerary
+ callIten();
 }
 
 function callIten (){
-  //var itenerary: [];
-  //itenerary.push(Json.parse(localStorage.getItem('')))
-  //local.Storage
+  var itenerary: [];
+  itenerary.push(Json.parse(localStorage.getItem('')));
+  localStoragesetItem('', JSON.stringify(a));
+
+  window.onLoad = function(){
+    document.getElementsByClassName() = localStorage.getItem();
+    document.getElementsByClassName() = localStorage.getItem(attractAccom);
+  };
 
 }
 
@@ -98,6 +103,7 @@ function createCards() {
               refreshBtn.classList = 'refresh' 
               addItenBtn.classList = 'add-to-iten'
               imDoneBtn.classList = 'im-done'
+              //add text in button
 
       document.addEventListener('click', '.card', function addButtons() {
         div.appendChild(refreshBtn)
@@ -111,7 +117,7 @@ function createCards() {
 
 
 function callButns(){
-  const error = document.createElement('h4');// 
+  //const error = document.createElement('h4');// 
 
   document.addEventListener('click', '.refresh', createCards);
 
@@ -120,15 +126,19 @@ function callButns(){
       var attractAccom = [];
       var c;
 
-         window.localStorage.setItem(attractAccom)
-
             if (attractAccom[c] >= 1) {
             div.appendChild(imDoneBtn)//middle button
+            window.localStorage.setItem(attractAccom)
             }
   });
 
-  document.addEventListener('click', '.im-done', );
+  document.addEventListener('click', '.im-done', function setStorage(){
+          window.localStorage.setItem(attractAccom); //finish
+        });
 }
+
+
+
       //add event listener for explore button to start explore dscription function
             //document.addEventListener('click', '.card', function(){// if you click on the class explore within the document we will call this function
             //exploreDescription(tempLocations[r])
@@ -152,26 +162,23 @@ function callButns(){
         //div.appendChild(addItenBtn)//not sure if needed
         //div.appendChild(imDoneBtn)
 
-        document.addEventListener('click', function setStorage(){
-          //variable of the string??
-          window.localStorage.setItem(); //finish
-        });
+       // document.addEventListener('click', 
         //store to loacl storage 
-    });
-  };
+    //});
+  //};
 
- function refreshCards
+ //function refreshCards
 
 
 
-  function menuButton(){
+  //function menuButton(){
     //variable grabbing info from iteneraies in local storage
-    document.getElementById('').classList.toggle('show');//put class of drop down options for local storage in ID
+    //document.getElementById('').classList.toggle('show');//put class of drop down options for local storage in ID
     
-  }
+  //}
 
-  window.onclick = function outsideMenuClick(event){
-    if (!event.target.matches())//create id for the actual drop down portion
-        var dropdowncontent = //get infor from local storage as to what they are choosing
-  }
+  //window.onclick = function outsideMenuClick(event){
+    //if (!event.target.matches())//create id for the actual drop down portion
+       // var dropdowncontent = //get infor from local storage as to what they are choosing
+  //}
 
