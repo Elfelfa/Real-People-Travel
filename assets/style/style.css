@@ -83,7 +83,8 @@ body {
 }
 
 .subtitle3,
-.subtitle4 {
+.subtitle4,
+.subtitle5 {
     color: var(--text);
     font-family: var(--font2);
     font-size: 100px;
