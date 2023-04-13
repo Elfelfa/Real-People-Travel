@@ -14,8 +14,10 @@ const nearbyLink = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json
 const pageOne = document.getElementById('pageOne');
 const pageTwo = document.getElementById('pageTwo');
 const pageThree = document.getElementById('pageThree');
-const pageFour = document.getElementById('pageFour');
-const pageFive = document.getElementById('pageFive');
+const pageFFHead = document.getElementById('pageFourFive');
+const pageFFSub = document.getElementById('subtitleFourFive');
+const pageFFOptions = document.getElementById('pageFFOptions');
+const pageFFCards = document.getElementById('pageFFCards');
 
 const nameInput = document.getElementById('yourName');
 const pgTwoNext = document.getElementById('pageTwoNext');
@@ -113,6 +115,7 @@ function getStarterLocation(chosenLocation) {
 //
 function getNearbyHotels() {
     console.log('Start getNearbyHotels');
+
     fetch(corsLink + nearbyLink + 'keyword=hotel&location=' + itinerary[0].lat + '%2C' + itinerary[0].lon + '&radius=50000' + apiKey)
         .then(function (response) {
             if (response.ok) {
@@ -141,7 +144,7 @@ function getNearbyHotels() {
 
                         locData.name = loc.name;
 
-                        if (locData.image) {
+                        if (loc.photos) {
                             locData.image = corsLink + photoLink + loc.photos[0].photo_reference + apiKey;
                         }
 
@@ -154,11 +157,10 @@ function getNearbyHotels() {
                     console.log(tempLocations);
                     itinerary.push(tempLocations[0]);
                     console.log('End getNearbyHotels');
+                    createCards();
                 });
             };
         });
-
-    setTimeout(getNearbyAttractions, 5000);
 }
 
 //  Searches for nearby attractions in a 50,000m radius around the selected hotel
@@ -270,9 +272,9 @@ function sceneTransition() {
             pageThree.classList.remove('hidden');
             break;
         case 3:
-            //fade out the input, fade out the cards
-            //change elments to accomodation selection
-            //fade back in the page
+            pageThree.classList.add('hidden');
+            pageFFHead.classList.remove('hidden');
+            setTimeout(getNearbyHotels, 5000);
             break;
         case 4:
             //fade out the accomodation cards
@@ -346,58 +348,67 @@ function getName() {
 
 function createCards() {
     var generatedDex = [];
-    for (let index = 0; index < 10; index++) {
+    var iteration = 0;
 
-        var r;
-        var t = false;
+    var loadImages = setInterval(function(){
+        if (iteration < 10)
+        {
+            
+            var r;
+            var t = false;
+            while (true) {
+                r = Math.floor(Math.random() * tempLocations.length);
 
-        while (true) {
-            r = Math.floor(Math.random() * tempLocations.length);
+                for (var k = 0; k < generatedDex.length; k++) {
+                    if (r === generatedDex[k]) {
+                        t = true;
+                        break;
+                    }
+                }
 
-            for (let k = 0; k < generatedDex.length; k++) {
-                if (r === generatedDex[k]) {
-                    t = true;
+                if (t === false) {
+                    generatedDex.push(r);
                     break;
                 }
             }
 
-            if (t === false) {
-                generatedDex.push(r);
-                break;
-            }
+            const div = document.createElement('div');
+            const image = document.createElement('img');
+            const name = document.createElement('h4');
+            
+            div.classList.add('dCard', 'flex-initial', 'w-60', 'h-60', 'm-5');
+            image.setAttribute('style', 'position: absolute; height: 100%; width: 100%; object-fit: cover;');
+
+            /*fetch(tempLocations[r].image)
+                .then (function(response) {
+                    if(response.ok) {
+                        
+                    }
+                    
+                })
+                .then (function(d){
+                    console.log(d);
+                    image.src = d;
+                    div.appendChild(image);
+                })*/
+                
+            image.setAttribute('crossOrigin', 'anonymous');
+            image.setAttribute('referrerPolicy', 'origin');
+            image.src = tempLocations[r].image;
+            name.innerText = tempLocations[r].name;
+
+            div.appendChild(name);
+            div.appendChild(image);
+            
+            cardsContainer.appendChild(div);
+            iteration++
         }
-
-        const div = document.createElement('div');
-        const image = document.createElement('img');
-        const name = document.createElement('h4');
-        const refreshBtn = document.createElement('button');
-        const imDoneBtn = document.createElement('button');
-        const addItinBtn = document.createElement('button');
-        
-        div.classList.add('dCard flex-initial w-60 h-60 m-5');
-
-        image.src = tempLocations[r].image;
-        name.innerText = tempLocations[r].name;
-        
-        refreshBtn.classList.add('refresh');
-        addItinBtn.classList.add('addToItin');
-        imDoneBtn.classList.add('imDone');
-
-        refreshBtn.innerText = "Refresh";
-        addItinBtn.innerText = "Add To Itinerary";
-        imDoneBtn.innerText = "I'm Done";
-
-        div.appendChild(image);
-        div.appendChild(name);
-        cardsContainer.appendChild(div);
-    }
-
-    document.addEventListener('click', '.card', function addButtons() {
-        div.appendChild(addItinBtn);
-    });
-
-    div.appendChild(refreshBtn);
-    callBtns(imDoneBtn);
+        else
+        {
+            clearInterval(loadImages);
+            pageFFCards.classList.remove('hidden');
+        }
+    }, 5);
 };
 
 function clearCards() {
