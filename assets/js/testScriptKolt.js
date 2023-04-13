@@ -19,10 +19,10 @@ const corsLink = 'https://cors-anywhere.herokuapp.com/';
 const placeLink = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?';
 const placeFields = '&inputtype=textquery&fields=formatted_address%2Cname%2Cphoto%2Crating%2Copening_hours%2Cgeometry%2Cprice_level';
 const photoLink = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference=';
+
 const nearbyLink = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?';
 
 getStarterLocation();
-
 
 //script.js will not execute any code until the page's DOM nodes are ready.
 //
