@@ -38,7 +38,7 @@ function getName(){
 }
 
 function callIten (){
-  var itenerary = [];
+  var itenerary = [];//changed to =
   itenerary.push(Json.parse(localStorage.getItem('')));
   localStoragesetItem('', JSON.stringify(a));
 
@@ -88,7 +88,7 @@ function createCards() {
         //explore.classList.add('explore')// do to other add lists below
 
         image.src= tempLocations[r].image;
-        name.innerText = `${tempLocations[r].name}`
+        name.innerText = `${tempLocations[r].name}` //change to vanilla JS
         //explore.textContent = 'Explore'
 
       div.appendChild(image)
@@ -100,10 +100,14 @@ function createCards() {
           const imDoneBtn = document.createElement('button');
           const addItenBtn = document.createElement('button');
                       //can put these at top i put these here to show what they refer to
-              refreshBtn.classList = 'refresh' 
-              addItenBtn.classList = 'add-to-iten'
-              imDoneBtn.classList = 'im-done'
+              refreshBtn.classList.add('refresh') 
+              addItenBtn.classList.add('addToIten') //FIXED THESE THREE
+              imDoneBtn.classList.add('imDone') 
               //add text in button
+
+              .refreshBtn.textContent.add('Refresh')  
+              .addToIten.textContent.add('Add To Itinerary') 
+              .imDone.textContent.add("I'm Done")
 
       document.addEventListener('click', '.card', function addButtons() {
         div.appendChild(refreshBtn)
