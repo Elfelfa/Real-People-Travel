@@ -38,7 +38,7 @@ function getName(){
 }
 
 function callIten (){
-  var itenerary: [];
+  var itenerary = [];
   itenerary.push(Json.parse(localStorage.getItem('')));
   localStoragesetItem('', JSON.stringify(a));
 
