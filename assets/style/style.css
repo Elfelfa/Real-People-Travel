@@ -43,7 +43,7 @@ body {
 
 }
 
-.asideMenu {
+.cursor-pointer {
     color: var(--text);
     background-color: var(--menubackground);
     font-family: var(--font1);
