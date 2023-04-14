@@ -2,7 +2,7 @@
 
 **Have you ever thought** _"I would love to go on vacation but I have no idea how to start planning it! I cant afford a travel agent and the thought of doing it on my own is too overhwelming."_?
 
-If your answer is yes (and we all know it is), then **Real People Travel** is just the site for you! We based our idea off of the following saying: _"well, real people dont live like that"_ and the many other variations of the saying. All of which essentially state that only fictional or rich people can travel. We want to stop that stigma, real people DO travel and our website helps you do that. Who needs a travel agent when you can come to [insert link to our website]!
+If your answer is yes (and we all know it is), then **Real People Travel** is just the site for you! We based our idea off of the following saying: _"well, real people dont live like that"_ and the many other variations of the saying. All of which essentially state that only fictional or rich people can travel. We want to stop that stigma, real people DO travel and our website helps you do that. Who needs a travel agent when you can come to [Real People Travel](https://elfelfa.github.io/Real-People-Travel/)!
 
 ![Real People Travel home page screenshot](/assets/images/Page1.png)
 
