@@ -14,7 +14,7 @@
 
 <body class="overflow-y-hidden">
    <!----------Slideover---------->
-   <aside class="asideMenu m-12 mx-18 grid grid-cols-1 place-items-end h-5">
+   <aside class="asideMenu m-12 mx-18 grid grid-cols-1 place-items-end h-5" id='aside'>
       <div class="w-screen h-screen flex items-start justify-end">
          <div onclick="toggleSlideover()" class="cursor-pointer px-5 py-2">Itineraries</div>
          <div id="slideoverContainer" class="w-full h-full fixed inset-0 invisible">
@@ -27,92 +27,98 @@
                   <div class="sCard flex-initial w-60 h-60 m-5"></div>
                   <div class="sCard flex-initial w-60 h-60 m-5"></div>
                   <div class="sCard flex-initial w-60 h-60 m-5"></div>
-               </div>   
+               </div>
            </div>
          </div>
        </div>
    </aside>
    <!----------Main Content---------->
-   
-            <main>
-               <!----------Page 1---------->
-               <section class="main-content mt-52 container mx-auto" id="pageOne">
-                  <h1 class="title mx-8 flex justify-center" id="title">Real People Travel</h1>
+   <main>
+      <!----------Page 1---------->
+      <section class="main-content mt-52 container mx-auto" id="pageOne">
+         <h1 class="title mx-8 flex justify-center" id="title">Real People Travel</h1>
 
-                  <div class=" justify-center">
-                     <h2 class="subtitle text-center ">Adventure is One</h2>
-                     <h2 class="subtitle text-center">Itinerary Away</h2>
-                  </div>
-                  <div class="mt-6 flex justify-center">
-                     <button class="btn-4 px-12 py-1 letsPlan justify-center" id="letsPlan">Let's Plan</button>
-                  </div>
-               </section>
+         <div class=" justify-center">
+            <h2 class="subtitle text-center ">Adventure is One</h2>
+            <h2 class="subtitle text-center">Itinerary Away</h2>
+         </div>
+         <div class="mt-6 flex justify-center">
+            <button class=" px-12 py-1 letsPlan justify-center" id="letsPlan">Let's Plan</button>
+         </div>
+      </section>
 
-               <!----------Page 2---------->
-               <section class="hidden sec-content mt-52 container mx-auto" id="pageTwo">
-                  <h2 class=" subtitle2 mx-8 flex justify-center" id="subtitle2">Let's begin</h2>
-                  <div class=" justify-center">
-                     <div class="block text-center">
-                        <input type="text" class="name text-center px-14 py-1 mt-5" placeholder="Your Name" id="yourName"/>
-                     </div>
-                  </div>
-                  <div class="text-center mt-8">
-                     <button class="next px-14" id="pageTwoNext">Next!</button>
-                  </div>
-               </section>
-               
-               <!----------Page 3---------->
-               <section class="hidden trd-content -mt-20 container mx-auto" id="pageThree">
-                  <h2 class="headerTitleStuff subtitle3 flex justify-center" id="subtitle3">Select a Destination</h2>
-                  <div class="flex justify-center">
-                     <div class="text-center" id="citySearchContainer">
-                        <input type="text" class="name text-center mt-6 px-16 py-1" id="pgThreeSearch" placeholder="desired destination" />
-                        <button class="search px-14 py-1 ml-10" id="pgThreeSearchBtn">Search</button>
-                     </div>
-                  </div>
-               </section>
-               
-               <!----------Page 4 & 5---------->
-               <section class="hidden headerTitleStuff -mt-20 container mx-auto" id="pageFourFive">
-                     <h2 class="subtitle4 text-center" id="subtitleFourFive">Hotels</h2>
-                     <h1 class="options -mt-5 flex justify-center" id="pgFFOptions">Choose a hotel!</h1>
-               </section>
-               
-                  
-               <section class="hidden attractions container mx-auto" id="pageFFCards">   
-                  <div class="flex flex-wrap mt-8 justify-center" id="cardsContainer">
-                     
-                  </div>
+      <!----------Page 2---------->
+      <section class="hidden sec-content mt-52 container mx-auto" id="pageTwo">
+         <h2 class=" subtitle2 mx-8 flex justify-center" id="subtitle2">Let's begin</h2>
+         <div class=" justify-center">
+            <div class="block text-center">
+               <input type="text" class="name text-center px-14 py-1 mt-5" placeholder="Your Name" id="yourName"/>
+            </div>
+         </div>
+         <div class="text-center mt-8">
+            <button class="next px-14" id="pageTwoNext">Next!</button>
+         </div>
+      </section>
+      
+      <!----------Page 3---------->
+      <section class="hidden trd-content -mt-20 container mx-auto" id="pageThree">
+         <h2 class="headerTitleStuff subtitle3 flex justify-center" id="subtitle3">Select a Destination</h2>
+         <div class="flex justify-center">
+            <div class="text-center" id="citySearchContainer">
+               <input type="text" class="name text-center mt-6 px-16 py-1" id="pgThreeSearch" placeholder="desired destination" />
+               <button class="search px-14 py-1 ml-10" id="pgThreeSearchBtn">Search</button>
+            </div>
+         </div>
+      </section>
+      
+      <!----------Page 4 & 5---------->
+      <section class="hidden headerTitleStuff -mt-20 container mx-auto" id="pageFourFive">
+            <h2 class="subtitle4 text-center" id="subtitleFourFive">Hotels</h2>
+            <h1 class="options -mt-5 flex justify-center" id="pgFFOptions">Choose a hotel!</h1>
+      </section>
+      
+         
+      <section class="hidden attractions container mx-auto" id="pageFFCards">   
+         <div class="flex flex-wrap mt-8 justify-center" id="cardsContainer">
+            
+         </div>
 
-                  <div class="mt-6 flex justify-center">
-                     <!-- <button class="addItin px-6 py-1 justify-center mx-5">Add to Itinerary</button> -->
-                     <button class="refreshBtn px-6 py-1 justify-center" id="refreshBtn">Refresh</button>
-                  </div>
-               </section>
+         <div class="mt-6 flex justify-center">
+            <button class="refreshBtn px-6 py-1 justify-center" id="refreshBtn">Refresh</button>
+         </div>
+      </section>
 
-               <!----------Page 6---------->
-               <section class="hidden">
-                  <section class="-mt-20 container mx-auto" id="pageSix">
-                     <h2 class=" subtitle5 text-center" id="subtitle6">Here is your Itinerary,</h2>
-                     <h1 class="yourName flex justify-center" id="perName"></h1>
-                  </section>
-                  <section class="yourDestination container mx-auto">   
-                     <div class="flex mt-8 justify-center">
-                        <div class="dCard flex-initial w-full h-60 m-5 mx-24"></div>
-                     </div>
-                  </section>
-                  <section class="yourItinerary container mx-auto">   
-                     <div class="flex flex-wrap mt-8 justify-center">
-                        <div class="dCard flex-initial w-60 h-60 m-5"></div>
-                        <div class="dCard flex-initial w-60 h-60 m-5"></div>
-                        <div class="dCard flex-initial w-60 h-60 m-5"></div>
-                        <div class="dCard flex-initial w-60 h-60 m-5"></div>
-                        <div class="dCard flex-initial w-60 h-60 m-5"></div>
-                     </div>
-                  </section>
-               </section>
-            </main>
- 
+      <!----------Page 6---------->
+
+      
+      <div class="hidden mt-30 mx-auto" style="height: 800px; width: 800px; border-radius: 30px;" id="map"></div>
+
+      <div class="hidden mt-6 flex justify-center" id="pgSixNextBtn">
+         <button class="refreshBtn px-6 py-1 justify-center" id="refreshBtn">Save Your Itinerary</button>
+      </div>
+
+      <!----------Page 7---------->
+      <section class="hidden">
+         <section class="-mt-20 container mx-auto" id="pageSix">
+            <h2 class=" subtitle5 text-center" id="subtitle6">Here is your Itinerary,</h2>
+            <h1 class="yourName flex justify-center" id="perName"></h1>
+         </section>
+         <section class="yourDestination container mx-auto">   
+            <div class="flex mt-8 justify-center">
+               <div class="dCard flex-initial w-full h-60 m-5 mx-24"></div>
+            </div>
+         </section>
+         <section class="yourItinerary container mx-auto">   
+            <div class="flex flex-wrap mt-8 justify-center">
+               <div class="dCard flex-initial w-60 h-60 m-5"></div>
+               <div class="dCard flex-initial w-60 h-60 m-5"></div>
+               <div class="dCard flex-initial w-60 h-60 m-5"></div>
+               <div class="dCard flex-initial w-60 h-60 m-5"></div>
+               <div class="dCard flex-initial w-60 h-60 m-5"></div>
+            </div>
+         </section>
+      </section>
+   </main>
    <script src="./assets/js/script.js"></script>
 </body>
 

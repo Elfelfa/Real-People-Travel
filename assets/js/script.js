@@ -11,14 +11,18 @@ const photoLink = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400
 
 const nearbyLink = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?';
 
+const sbContainer = document.getElementById('refreshMe');
+const mySB = document.getElementById('mySB');
+
 const pageOne = document.getElementById('pageOne');
 const pageTwo = document.getElementById('pageTwo');
 const pageThree = document.getElementById('pageThree');
 const pageFFHead = document.getElementById('pageFourFive');
 const pageFFSub = document.getElementById('subtitleFourFive');
-const pageFFOptions = document.getElementById('pageFFOptions');
+const pageFFOptions = document.getElementById('pgFFOptions');
 const pageFFCards = document.getElementById('pageFFCards');
 
+const pageSixBtn = document.getElementById('pgSixNextBtn');
 const refreshBtn = document.getElementById('refreshBtn');
 
 const nameInput = document.getElementById('yourName');
@@ -27,12 +31,47 @@ const pgTwoNext = document.getElementById('pageTwoNext');
 const pgThreeSearchContainer = document.getElementById('citySearchContainer');
 const pgThreeSearchBtn = document.getElementById('pgThreeSearchBtn');
 const pgThreeSearch = document.getElementById('pgThreeSearch');
+const mapContainer = document.getElementById("map");
 
 const cardsContainer = document.querySelector('#cardsContainer');
+
+var script = document.createElement('script');
+script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDORJkJF8s_jJJqrMWshFrJTLxMXDFhTzg&callback=initMap';
+script.async = true;
+function initMap() {
+    if (itinerary.length >= 6)
+    {
+        const myLatLng = { lat: parseFloat(itinerary[1].lat), lng: parseInt(itinerary[1].lon) };
+        const map = new google.maps.Map(mapContainer, {
+            zoom: 9,
+            center: myLatLng,
+        });
+
+        for (var i = 1; i < itinerary.length; i++) {
+
+            new google.maps.Marker({
+                position: { lat: itinerary[i].lat, lng: itinerary[i].lon },
+                map,
+                title: itinerary[i].name,
+            });
+        };
+    }
+    else{
+        const myLatLng = { lat: -25.363, lng: 131.044 };
+        
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 9,
+            center: myLatLng,
+        });
+    }
+}
+document.head.appendChild(script);
 
 //script.js will not execute any code until the page's DOM nodes are ready.
 //
 document.addEventListener("DOMContentLoaded", () => {
+
+    var aPicks = 0;
 
     var startBtn = document.getElementById("letsPlan");
 
@@ -53,7 +92,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     pgThreeSearchBtn.addEventListener("click", function (event) {
         event.stopPropagation();
-        var isValid;
 
         if (pgThreeSearch.value.trim() !== '') {
             getStarterLocation(pgThreeSearch.value.trim());
@@ -65,6 +103,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
         clearCards();
         createCards();
+    });
+
+    cardsContainer.addEventListener("click", function (event) {
+        if (event.target && event.target.matches('div')) {
+            event.stopPropagation();
+
+            if (currentPage === 3) {
+                console.log(event.target);
+                itinerary.push(tempLocations[parseInt(event.target.getAttribute('data-number'))]);
+                sceneTransition();
+            }
+            else if (currentPage === 4) {
+                console.log(event.target);
+                itinerary.push(tempLocations[parseInt(event.target.getAttribute('data-number'))]);
+
+                if (itinerary.length >= 6) {
+                    console.log('Itinerary full');
+                    console.log(itinerary);
+                    clearCards();
+                    sceneTransition();
+                }
+                else {
+                    clearCards();
+                    createCards();
+                }
+            }
+        }
     });
 });
 
@@ -104,7 +169,6 @@ function getStarterLocation(chosenLocation) {
                     locData.lat = data.candidates[0].geometry.location.lat;
                     locData.lon = data.candidates[0].geometry.location.lng;
                     locData.name = data.candidates[0].name;
-                    locData.image = corsLink + photoLink + data.candidates[0].photos[0].photo_reference + apiKey;
                 });
             };
         });
@@ -123,14 +187,14 @@ function getStarterLocation(chosenLocation) {
 function getNearbyHotels() {
     console.log('Start getNearbyHotels');
 
-    fetch(corsLink + nearbyLink + 'keyword=hotel&location=' + itinerary[0].lat + '%2C' + itinerary[0].lon + '&radius=50000' + apiKey)
+    fetch(corsLink + nearbyLink + 'keyword=hotel&location=' + itinerary[0].lat + '%2C' + itinerary[0].lon + '&price_level&rating' + '&radius=50000' + apiKey)
         .then(function (response) {
             if (response.ok) {
                 console.log(response);
 
                 response.json().then(function (data) {
                     console.log(data);
-                    setTimeout('', 5000);
+                    setTimeout('', 3000);
 
                     data.results.forEach(loc => {
                         var locData = {
@@ -138,7 +202,10 @@ function getNearbyHotels() {
                             name: '',
                             image: '',
                             lat: '',
-                            lon: ''
+                            lon: '',
+                            id: tempLocations.length,
+                            price: '',
+                            rating: ''
                         }
 
                         if (loc.address) {
@@ -151,10 +218,34 @@ function getNearbyHotels() {
 
                         locData.name = loc.name;
 
+                        switch (loc.price_level) {
+                            case 0:
+                                locData.price = 'Free';
+                                break;
+                            case 1:
+                                locData.price = 'Price: $';
+                                break;
+                            case 2:
+                                locData.price = 'Price: $$';
+                                break;
+                            case 3:
+                                locData.price = 'Price: $$$';
+                                break;
+                            case 4:
+                                locData.price = 'Price: $$$$';
+                                break;
+                        };
+
                         if (loc.photos) {
                             locData.image = corsLink + photoLink + loc.photos[0].photo_reference + apiKey;
                         }
+                        else {
+                            locData.image = './assets/images/noImg.png';
+                        };
 
+                        if (loc.rating) {
+                            locData.rating = 'Rating: ' + loc.rating + ' stars';
+                        }
                         locData.lat = loc.geometry.location.lat;
                         locData.lon = loc.geometry.location.lng;
 
@@ -162,7 +253,6 @@ function getNearbyHotels() {
                     });
 
                     console.log(tempLocations);
-                    itinerary.push(tempLocations[0]);
                     console.log('End getNearbyHotels');
                     createCards();
                 });
@@ -189,7 +279,7 @@ function getNearbyAttractions() {
         if (i < 4) {
             switch (i) {
                 case 0:
-                    var currentAttr = 'tourist_attraction';
+                    var currentAttr = 'casino';
                     break;
                 case 1:
                     var currentAttr = 'cafe';
@@ -210,7 +300,7 @@ function getNearbyAttractions() {
                     if (response.ok) {
                         response.json().then(function (data) {
                             console.log(data);
-                            setTimeout('', 5000);
+                            setTimeout('', 3000);
 
                             data.results.forEach(loc => {
 
@@ -219,7 +309,10 @@ function getNearbyAttractions() {
                                     name: '',
                                     image: '',
                                     lat: '',
-                                    lon: ''
+                                    lon: '',
+                                    id: tempLocations.length,
+                                    price: '',
+                                    rating: ''
                                 }
 
                                 if (loc.business_status !== 'CLOSED_PERMANENTLY') {
@@ -231,10 +324,35 @@ function getNearbyAttractions() {
                                         locData.address = loc.vicinity;
                                     };
 
+                                    switch (loc.price_level) {
+                                        case 0:
+                                            locData.price = 'Price: Free';
+                                            break;
+                                        case 1:
+                                            locData.price = 'Price: $';
+                                            break;
+                                        case 2:
+                                            locData.price = 'Price: $$';
+                                            break;
+                                        case 3:
+                                            locData.price = 'Price: $$$';
+                                            break;
+                                        case 4:
+                                            locData.price = 'Price: $$$$';
+                                            break;
+                                    };
+
+                                    if (loc.rating) {
+                                        locData.rating = 'Rating: ' + loc.rating + ' stars';
+                                    }
+
                                     locData.name = loc.name;
 
                                     if (loc.photos) {
                                         locData.image = corsLink + photoLink + loc.photos[0].photo_reference + apiKey;
+                                    }
+                                    else {
+                                        locData.image = './assets/images/noImg.png';
                                     };
 
                                     locData.lat = loc.geometry.location.lat;
@@ -250,6 +368,7 @@ function getNearbyAttractions() {
         }
         else {
             clearInterval(myBuffer);
+            createCards();
             console.log(tempLocations);
             console.log('End getNearbyAttractions');
         }
@@ -280,26 +399,37 @@ function sceneTransition() {
         case 3:
             pageThree.classList.add('hidden');
             pageFFHead.classList.remove('hidden');
-            setTimeout(getNearbyHotels, 5000);
+            setTimeout(getNearbyHotels, 3000);
             break;
         case 4:
-            pageFour.classList.add('hidden');
-            pageFive.classList.remove('hidden');
-            //Implement way to select up to 4 cards without transition
+            clearCards();
+            pageFFSub.innerText = 'Points of Interest';
+            pageFFOptions.innerText = 'Pick four points of interest!';
+            pageFFCards.classList.add('hidden');
+            setTimeout(getNearbyAttractions, 3000);
             break;
         case 5:
-            pageFive.classList.add('hidden');
-            pageSix.classList.remove('hidden');
-            //Change elements to show complete roadmap through google matrix API
-            //fade in the elements
+            pageFFSub.innerText = getName() + "'s Itinerary Map";
+            pageFFOptions.innerText = "Look at the places you'll go!";
+            pageFFCards.classList.add('hidden');
+            cardsContainer.classList.add('hidden');
+            console.log('page destroy complete');
+
+            initMap();
+            mapContainer.classList.remove('hidden');
+            
+            pageSixBtn.classList.remove('hidden');
             break;
         case 6:
+            //Fade out the map
             //Save itinerary to sidebar
             //Change elements to You're done! Start a new itinerary? screen
             //Fade in
             break;
     }
 };
+
+
 
 // Fade in and fade out functions that will grab an element that is
 // sent to it and will either fade them out or fade them in. These
@@ -345,7 +475,11 @@ function storeName(inputName) {
 };
 
 function getName() {
-    document.getElementById('perName').innerText = localStorage.getItem('yourName');
+    //var addName = document.createElement('h3');
+
+    //document.getElementById('perName').innerText = 
+    var name = JSON.parse(localStorage.getItem('yourName'));
+    return name;
 };
 
 function createCards() {
@@ -371,23 +505,29 @@ function createCards() {
             const name = document.createElement('h4');
 
             div.classList.add('dCard', 'w-60', 'h-60', 'm-5');
+            div.setAttribute('data-number', tempLocations[r].id);
 
             image.setAttribute('style', 'position: absolute; margin: auto; height: 100%; width: 100%; object-fit: cover;');
-            image.setAttribute('crossOrigin', 'anonymous');
-            image.setAttribute('referrerPolicy', 'origin');
+
+            if (tempLocations[r].image !== './assets/images/noImg.png') {
+                image.setAttribute('crossOrigin', 'anonymous');
+                image.setAttribute('referrerPolicy', 'origin');
+            }
+
             image.src = tempLocations[r].image;
 
-            name.innerText = tempLocations[r].name;
+            name.innerText = tempLocations[r].name + '\n' + tempLocations[r].rating + '\n' + tempLocations[r].price;
             name.classList.add('text-center');
 
             div.appendChild(image);
             div.appendChild(name);
 
-            cardsContainer.appendChild(div);
-            iteration++
+            cardsContainer.appendChild(div); -
+                iteration++
         }
         else {
             clearInterval(loadImages);
+
             pageFFCards.classList.remove('hidden');
         };
     }, 5);
