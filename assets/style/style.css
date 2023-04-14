@@ -101,7 +101,7 @@ body {
     border: 3px solid var(--text);
     border-radius: 50px;
     position: relative;
-    z-index: -1;
+    z-index: 1;
     cursor: pointer;
 }
 
@@ -179,7 +179,7 @@ body {
     background-color: var(--namebackground);
     border-left: 10px solid var(--menubackground);
     position: absolute;
-    z-index: 20;
+    z-index: 3;
 }
 
 .slideoverBg {
