@@ -80,14 +80,7 @@ body {
 .dCard img {
     border-radius: inherit;
     position: absolute;
-}
-
-.headerTitleStuff {
-    background-color: var(--menubackground);
-    width: 70%;
-    border-radius: 100px;
-    border: solid 4px;
-    border-color: var(--text);
+    pointer-events: none;
 }
 
 .dCard h4 {
@@ -99,6 +92,15 @@ body {
     color: var(--text);
     border-radius: 20px;
     border: solid 1px;
+    pointer-events: none;
+}
+
+.headerTitleStuff {
+    background-color: var(--menubackground);
+    width: 70%;
+    border-radius: 100px;
+    border: solid 4px;
+    border-color: var(--text);
 }
 
 .yourName {
