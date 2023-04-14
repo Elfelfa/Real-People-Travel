@@ -51,7 +51,7 @@ body {
 .addItin:hover,
 .cursor-pointer:hover,
 .refreshBtn:hover {
-    background-color: var(--menubackgroundh); 
+    background-color: var(--menubackgroundh);
 }
 
 .letsPlan:active,
@@ -61,7 +61,7 @@ body {
 .cursor-pointer:active,
 .refreshBtn:active {
     background-color: var(--menubackgroundh);
-    border: 6px solid var(--text);
+    border: 2px solid var(--text);
 }
 
 .cursor-pointer {
@@ -102,12 +102,27 @@ body {
     border-radius: 50px;
     position: relative;
     z-index: 1;
+    cursor: pointer;
+}
+
+.dCard:hover {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 50px;
+    -webkit-box-shadow: 0px 0px 30px 0px rgba(255, 240, 30, 0.695);
+    -moz-box-shadow: 0px 0px 30px 0px rgba(255, 240, 30, 0.695);
+    box-shadow: 0px 0px 30px 0px rgba(255, 240, 30, 0.695);
+}
+
+.dCard:active {
+    border: 5px solid var(--text);
 }
 
 .dCard img {
     border-radius: inherit;
     position: absolute;
     pointer-events: none;
+
 }
 
 .dCard h4 {
@@ -124,7 +139,6 @@ body {
 
 .headerTitleStuff {
     background-color: var(--menubackground);
-    width: 70%;
     border-radius: 100px;
     border: solid 4px;
     border-color: var(--text);
@@ -180,3 +194,8 @@ body {
     border: 3px solid var(--text);
     border-radius: 50px;
 }
+
+#map {
+    margin-top: 20px;
+}
+
