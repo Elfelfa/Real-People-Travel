@@ -22,6 +22,8 @@ const pgOLO = document.getElementById('pgOLO');
 const pgOLT = document.getElementById('pgOLT');
 const pgOneBtn = document.getElementById('pgOneBtn');
 
+const loadingBox = document.getElementById('loadingBox');
+
 const pageTwo = document.getElementById('pageTwo');
 const pageThree = document.getElementById('pageThree');
 const pageFFHead = document.getElementById('pageFourFive');
@@ -49,6 +51,8 @@ const sideCardThree = document.getElementById('sideCardThree');
 const saveBtn = document.getElementById('saveItinBtn');
 const resetBtnContainer = document.getElementById('pgSevenRestartBtn');
 const resetBtn = document.getElementById('resetBtn');
+
+const sCardContainer = document.getElementById('sCardEventHandler');
 
 var script = document.createElement('script');
 script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDORJkJF8s_jJJqrMWshFrJTLxMXDFhTzg&callback=initMap';
@@ -160,6 +164,14 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     });
+
+    /*sCardContainer.addEventListener("click", function (event) {
+        if (event.target && event.target.matches('div')) {
+            event.stopPropagation();
+
+            writeSaveFile(event.target.getAttribute('data-number'));
+        }
+    });*/
 });
 
 // corsLink + placeLink = https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/findplacefromtext/json?
@@ -283,6 +295,7 @@ function getNearbyHotels() {
 
                     console.log(tempLocations);
                     console.log('End getNearbyHotels');
+                    loadingBox.classList.add('hidden');
                     createCards();
                 });
             };
@@ -397,6 +410,7 @@ function getNearbyAttractions() {
         }
         else {
             clearInterval(myBuffer);
+            loadingBox.classList.add('hidden');
             createCards();
             console.log(tempLocations);
             console.log('End getNearbyAttractions');
@@ -428,6 +442,7 @@ function sceneTransition() {
         case 3:
             pageThree.classList.add('hidden');
             pageFFHead.classList.remove('hidden');
+            loadingBox.classList.remove('hidden');
             setTimeout(getNearbyHotels, 1500);
             break;
         case 4:
@@ -435,6 +450,7 @@ function sceneTransition() {
             pageFFSub.innerText = 'Points of Interest';
             pageFFOptions.innerText = 'Pick four points of interest!';
             pageFFCards.classList.add('hidden');
+            loadingBox.classList.remove('hidden');
             setTimeout(getNearbyAttractions, 1500);
             break;
         case 5:
