@@ -12,18 +12,18 @@
    <title>Real People Travel</title>
 </head>
 
-<body>
+<body class="overflow-y-hidden">
    <!----------Slideover---------->
    <aside class="asideMenu m-12 mx-18 grid grid-cols-1 place-items-end h-5">
       <div class="w-screen h-screen flex items-start justify-end">
-         <div onclick="toggleSlideover()" class="cursor-pointer px-5 py-2">Stored Itineraries</div>
+         <div onclick="toggleSlideover()" class="cursor-pointer px-5 py-2">Itineraries</div>
          <div id="slideoverContainer" class="w-full h-full fixed inset-0 invisible">
            <div onclick="toggleSlideover()" id="slideoverBg" class="w-full h-full duration-500 ease-out transition-all inset-0 absolute bg-gray-900 opacity-0"></div>
            <div onclick="toggleSlideover()" id="slideover" class="slideover w-96 h-full absolute right-0 duration-300 ease-out transition-all translate-x-full">
                <div class="absolute cursor-pointer text-gray-600 top-0 w-8 h-8 flex items-center justify-center right-0 mt-5 mr-5">
                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                </div>
-               <div class="sContent flex flex-wrap mt-8 justify-center">
+               <div class="sContent flex flex-wrap mt-8 justify-center" id="cardsContainer">
                   <div class="sCard flex-initial w-60 h-60 m-5"></div>
                   <div class="sCard flex-initial w-60 h-60 m-5"></div>
                   <div class="sCard flex-initial w-60 h-60 m-5"></div>
@@ -37,9 +37,8 @@
          <div>
             <main>
                <!----------Page 1---------->
-               <section class="main-content mt-52 container mx-auto" id="pageOne">
+               <section class="main-content mt-44 container mx-auto" id="pageOne">
                   <h1 class="title mx-8 flex justify-center" id="title">Real People Travel</h1>
-
                   <div class=" justify-center">
                      <h2 class="subtitle text-center ">Adventure is One</h2>
                      <h2 class="subtitle text-center">Itinerary Away</h2>
@@ -77,10 +76,13 @@
                <section class="hidden headerTitleStuff -mt-20 container mx-auto" id="pageFourFive">
                      <h2 class="subtitle4 text-center" id="subtitleFourFive">Hotels</h2>
                      <h1 class="options -mt-5 flex justify-center" id="pgFFOptions">Choose a hotel!</h1>
+                     
                </section>
                
                   
                <section class="hidden attractions container mx-auto" id="pageFFCards">   
+                  <h2 class=" subtitle4 text-center" id="subtitle4">Attractions</h2>
+                  <h1 class="options -mt-5 flex justify-center" id="options">Choose up to 4</h1>
                   <div class="flex flex-wrap mt-8 justify-center" id="cardsContainer">
                      
                   </div>
@@ -105,7 +107,7 @@
                      </div>
                   </section>
                   <section class="yourItinerary container mx-auto">   
-                     <div class="flex flex-wrap mt-8 justify-center">
+                     <div class="flex flex-wrap mt-8 justify-center" id="cardsContainer">
                         <div class="dCard flex-initial w-60 h-60 m-5"></div>
                         <div class="dCard flex-initial w-60 h-60 m-5"></div>
                         <div class="dCard flex-initial w-60 h-60 m-5"></div>
