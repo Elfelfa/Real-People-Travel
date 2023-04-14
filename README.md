@@ -96,4 +96,7 @@ If your answer is yes (and we all know it is), then **Real People Travel** is ju
 ## Tools Used in This Project
 1. Tailwind
 2. Google Maps API
-3. Google Distance Matrix API
+3. Google Maps JavaScript API
+4. Google Fonts API
+5. Google Places API
+
