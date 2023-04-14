@@ -1,6 +1,7 @@
 :root {
     --text: #E9FF4F;
     --menubackground: #3D3F2C;
+    --menubackgroundh: #1f1f16;
     --namebackground: #7E8784;
     --black: #000000;
     --font1: "Open Sans", serif;
@@ -30,6 +31,8 @@ body {
     font-size: 120px;
 }
 
+
+
 .letsPlan,
 .next,
 .search,
@@ -40,15 +43,32 @@ body {
     font-size: 25px;
     border: 3px solid var(--text);
     border-radius: 50px;
+}
 
+.letsPlan:hover,
+.next:hover,
+.search:hover,
+.addItin:hover,
+.cursor-pointer:hover,
+.refreshBtn:hover {
+    background-color: var(--menubackgroundh); 
+}
 
+.letsPlan:active,
+.next:active,
+.search:active,
+.addItin:active,
+.cursor-pointer:active,
+.refreshBtn:active {
+    background-color: var(--menubackgroundh);
+    border: 6px solid var(--text);
 }
 
 .cursor-pointer {
     color: var(--text);
     background-color: var(--menubackground);
     font-family: var(--font1);
-    font-size: 20px;
+    font-size: 18px;
     border: 3px solid var(--text);
     border-radius: 50px;
 }
@@ -62,6 +82,10 @@ body {
     border-radius: 50px
 }
 
+.name:focus {
+    border: 3px solid var(--menubackground);
+}
+
 ::placeholder {
     /* Chrome/Opera/Safari */
     color: var(--text);
@@ -72,7 +96,8 @@ body {
     float: left;
 }
 
-.dCard, .sCard {
+.dCard,
+.sCard {
     border: 3px solid var(--text);
     border-radius: 50px;
     position: relative;
@@ -85,7 +110,6 @@ body {
 
 .headerTitleStuff {
     background-color: var(--menubackground);
-    width: 70%;
     border-radius: 100px;
     border: solid 4px;
     border-color: var(--text);
