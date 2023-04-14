@@ -144,6 +144,18 @@ body {
     border-color: var(--text);
 }
 
+.loadingBox {
+    position: absolute;
+    background-color: var(--menubackground);
+    border-radius: 50px;
+    width: 200px;
+    height: 55px;
+    border: solid 4px;
+    left: 45%;
+    top: 35%;
+    border-color: var(--text);
+}
+
 .yourName {
     color: var(--menubackground);
     font-family: var(--font1);
