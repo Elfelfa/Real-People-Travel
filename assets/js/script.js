@@ -6,7 +6,7 @@ var shiftItems = [];
 var currentSideCards = [];
 
 const apiKey = '&key=AIzaSyDORJkJF8s_jJJqrMWshFrJTLxMXDFhTzg';
-const corsLink = 'https://cors-anywhere.herokuapp.com/';
+const corsLink = 'https://floating-headland-95050.herokuapp.com/';
 const placeLink = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?';
 const placeFields = '&inputtype=textquery&fields=formatted_address%2Cname%2Cphoto%2Crating%2Copening_hours%2Cgeometry%2Cprice_level';
 const photoLink = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference=';
@@ -57,6 +57,7 @@ const sCardContainer = document.getElementById('sCardEventHandler');
 var script = document.createElement('script');
 script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDORJkJF8s_jJJqrMWshFrJTLxMXDFhTzg&callback=initMap';
 script.async = true;
+
 function initMap() {
     if (itinerary.length >= 6) {
         const myLatLng = { lat: parseFloat(itinerary[1].lat), lng: parseInt(itinerary[1].lon) };
