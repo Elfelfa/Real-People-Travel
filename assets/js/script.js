@@ -17,6 +17,11 @@ const sbContainer = document.getElementById('refreshMe');
 const mySB = document.getElementById('mySB');
 
 const pageOne = document.getElementById('pageOne');
+const pgOneTitle = document.getElementById('title');
+const pgOLO = document.getElementById('pgOLO');
+const pgOLT = document.getElementById('pgOLT');
+const pgOneBtn = document.getElementById('pgOneBtn');
+
 const pageTwo = document.getElementById('pageTwo');
 const pageThree = document.getElementById('pageThree');
 const pageFFHead = document.getElementById('pageFourFive');
@@ -42,6 +47,8 @@ const sideCardTwo = document.getElementById('sideCardTwo');
 const sideCardThree = document.getElementById('sideCardThree');
 
 const saveBtn = document.getElementById('saveItinBtn');
+const resetBtnContainer = document.getElementById('pgSevenRestartBtn');
+const resetBtn = document.getElementById('resetBtn');
 
 var script = document.createElement('script');
 script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDORJkJF8s_jJJqrMWshFrJTLxMXDFhTzg&callback=initMap';
@@ -120,9 +127,12 @@ document.addEventListener("DOMContentLoaded", () => {
         saveItinerary();
         clearSideCards();
         createSideCards();
+        sceneTransition();
     });
 
-
+    resetBtn.addEventListener("click", function(event) {
+        window.location = "./index.html";
+    });
 
     cardsContainer.addEventListener("click", function (event) {
         if (event.target && event.target.matches('div')) {
@@ -440,10 +450,17 @@ function sceneTransition() {
             pageSixBtn.classList.remove('hidden');
             break;
         case 6:
-            //Fade out the map
-            //Save itinerary to sidebar
-            //Change elements to You're done! Start a new itinerary? screen
-            //Fade in
+            pageSixBtn.classList.add('hidden');
+            pageFFHead.classList.add('hidden');
+            mapContainer.classList.add('hidden');
+            pageOne.classList.remove('hidden');
+            pgOneTitle.classList.add('hidden');
+            pgOneBtn.classList.add('hidden');
+
+            pgOLO.innerText = "You're done!"
+            pgOLT.innerText = "Have a great trip."
+
+            resetBtnContainer.classList.remove('hidden');
             break;
     }
 };
