@@ -6,7 +6,7 @@ var shiftItems = [];
 var currentSideCards = [];
 
 const apiKey = '&key=AIzaSyDORJkJF8s_jJJqrMWshFrJTLxMXDFhTzg';
-const corsLink = 'https://api.allorigins.win/raw?url=';
+const corsLink = 'https://cors-anywhere.herokuapp.com/';
 const placeLink = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?';
 const placeFields = '&inputtype=textquery&fields=formatted_address%2Cname%2Cphoto%2Crating%2Copening_hours%2Cgeometry%2Cprice_level';
 const photoLink = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference=';
