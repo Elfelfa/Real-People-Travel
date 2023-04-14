@@ -4,6 +4,8 @@
 
 If your answer is yes (and we all know it is), then **Real People Travel** is just the site for you! We based our idea off of the following saying: _"well, real people dont live like that"_ and the many other variations of the saying. All of which essentially state that only fictional or rich people can travel. We want to stop that stigma, real people DO travel and our website helps you do that. Who needs a travel agent when you can come to [insert link to our website]!
 
+![Real People Travel home page screenshot](/assets/images/Page1.png)
+
 ## Contributors
 * Kolt Bodzo [elfelfa](https://github.com/Elfelfa)
 * Roy Hargrave [rahargrave](https://github.com/rahargrave)
