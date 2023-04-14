@@ -75,6 +75,31 @@ body {
 .dCard, .sCard {
     border: 3px solid var(--text);
     border-radius: 50px;
+    position: relative;
+}
+
+.dCard img {
+    border-radius: inherit;
+    position: absolute;
+}
+
+.headerTitleStuff {
+    background-color: var(--menubackground);
+    width: 70%;
+    border-radius: 100px;
+    border: solid 4px;
+    border-color: var(--text);
+}
+
+.dCard h4 {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    background-color: var(--menubackground);
+    top: 40px;
+    color: var(--text);
+    border-radius: 20px;
+    border: solid 1px;
 }
 
 .yourName {
@@ -111,10 +136,7 @@ body {
 .slideover {
     background-color: var(--namebackground);
     border-left: 10px solid var(--menubackground);
-}
-
-.dCard {
-    position: relative;
+    position: absolute;
 }
 
 .refreshBtn {
