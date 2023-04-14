@@ -19,6 +19,8 @@ const pageFFSub = document.getElementById('subtitleFourFive');
 const pageFFOptions = document.getElementById('pageFFOptions');
 const pageFFCards = document.getElementById('pageFFCards');
 
+const refreshBtn = document.getElementById('refreshBtn');
+
 const nameInput = document.getElementById('yourName');
 const pgTwoNext = document.getElementById('pageTwoNext');
 
@@ -56,6 +58,13 @@ document.addEventListener("DOMContentLoaded", () => {
         if (pgThreeSearch.value.trim() !== '') {
             getStarterLocation(pgThreeSearch.value.trim());
         };
+    });
+
+    refreshBtn.addEventListener("click", function (event) {
+        event.stopPropagation();
+
+        clearCards();
+        createCards();
     });
 });
 
@@ -365,17 +374,18 @@ function createCards() {
             const image = document.createElement('img');
             const name = document.createElement('h4');
 
-            div.classList.add('dCard', 'flex-initial', 'w-60', 'h-60', 'm-5');
+            div.classList.add('dCard', 'w-60', 'h-60', 'm-5');
 
-            image.setAttribute('style', 'position: absolute; height: 100%; width: 100%; object-fit: cover;');
+            image.setAttribute('style', 'position: absolute; margin: auto; height: 100%; width: 100%; object-fit: cover;');
             image.setAttribute('crossOrigin', 'anonymous');
             image.setAttribute('referrerPolicy', 'origin');
             image.src = tempLocations[r].image;
 
             name.innerText = tempLocations[r].name;
+            name.classList.add('text-center');
 
-            div.appendChild(name);
             div.appendChild(image);
+            div.appendChild(name);
 
             cardsContainer.appendChild(div);
             iteration++
@@ -388,7 +398,7 @@ function createCards() {
 };
 
 function clearCards() {
-
+    cardsContainer.innerHTML = '';
 };
 
 function toggleSlideover() {
