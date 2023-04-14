@@ -2,6 +2,8 @@
 var currentPage = 0;
 var tempLocations = [];
 var itinerary = [];
+var shiftItems = [];
+var currentSideCards = [];
 
 const apiKey = '&key=AIzaSyDORJkJF8s_jJJqrMWshFrJTLxMXDFhTzg';
 const corsLink = 'https://cors-anywhere.herokuapp.com/';
@@ -35,12 +37,17 @@ const mapContainer = document.getElementById("map");
 
 const cardsContainer = document.querySelector('#cardsContainer');
 
+const sideCardOne = document.getElementById('sideCardOne');
+const sideCardTwo = document.getElementById('sideCardTwo');
+const sideCardThree = document.getElementById('sideCardThree');
+
+const saveBtn = document.getElementById('saveItinBtn');
+
 var script = document.createElement('script');
 script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDORJkJF8s_jJJqrMWshFrJTLxMXDFhTzg&callback=initMap';
 script.async = true;
 function initMap() {
-    if (itinerary.length >= 6)
-    {
+    if (itinerary.length >= 6) {
         const myLatLng = { lat: parseFloat(itinerary[1].lat), lng: parseInt(itinerary[1].lon) };
         const map = new google.maps.Map(mapContainer, {
             zoom: 9,
@@ -56,9 +63,9 @@ function initMap() {
             });
         };
     }
-    else{
+    else {
         const myLatLng = { lat: -25.363, lng: 131.044 };
-        
+
         const map = new google.maps.Map(document.getElementById("map"), {
             zoom: 9,
             center: myLatLng,
@@ -70,6 +77,8 @@ document.head.appendChild(script);
 //script.js will not execute any code until the page's DOM nodes are ready.
 //
 document.addEventListener("DOMContentLoaded", () => {
+
+    createSideCards();
 
     var aPicks = 0;
 
@@ -104,6 +113,16 @@ document.addEventListener("DOMContentLoaded", () => {
         clearCards();
         createCards();
     });
+
+    saveBtn.addEventListener("click", function(event) {
+        event.stopPropagation();
+
+        saveItinerary();
+        clearSideCards();
+        createSideCards();
+    });
+
+
 
     cardsContainer.addEventListener("click", function (event) {
         if (event.target && event.target.matches('div')) {
@@ -194,7 +213,7 @@ function getNearbyHotels() {
 
                 response.json().then(function (data) {
                     console.log(data);
-                    setTimeout('', 3000);
+                    setTimeout('', 1500);
 
                     data.results.forEach(loc => {
                         var locData = {
@@ -300,7 +319,7 @@ function getNearbyAttractions() {
                     if (response.ok) {
                         response.json().then(function (data) {
                             console.log(data);
-                            setTimeout('', 3000);
+                            setTimeout('', 1500);
 
                             data.results.forEach(loc => {
 
@@ -372,7 +391,7 @@ function getNearbyAttractions() {
             console.log(tempLocations);
             console.log('End getNearbyAttractions');
         }
-    }, 5000);
+    }, 1500);
 }
 
 //Switch case function that will determine what scene the page will
@@ -399,14 +418,14 @@ function sceneTransition() {
         case 3:
             pageThree.classList.add('hidden');
             pageFFHead.classList.remove('hidden');
-            setTimeout(getNearbyHotels, 3000);
+            setTimeout(getNearbyHotels, 1500);
             break;
         case 4:
             clearCards();
             pageFFSub.innerText = 'Points of Interest';
             pageFFOptions.innerText = 'Pick four points of interest!';
             pageFFCards.classList.add('hidden');
-            setTimeout(getNearbyAttractions, 3000);
+            setTimeout(getNearbyAttractions, 1500);
             break;
         case 5:
             pageFFSub.innerText = getName() + "'s Itinerary Map";
@@ -417,7 +436,7 @@ function sceneTransition() {
 
             initMap();
             mapContainer.classList.remove('hidden');
-            
+
             pageSixBtn.classList.remove('hidden');
             break;
         case 6:
@@ -535,6 +554,109 @@ function createCards() {
 
 function clearCards() {
     cardsContainer.innerHTML = '';
+};
+
+function saveItinerary() {
+
+    shiftItems.length = 0;
+    var needShift = true;
+
+    for (var i = 0; i < 3; i++) {
+        if (localStorage.getItem("side" + i.toString()) === null) {
+            localStorage.setItem("side" + i.toString(), JSON.stringify(itinerary));
+            needShift = false;
+            break;
+        }
+        else if (i > 0) {
+            shiftItems.push(JSON.parse(localStorage.getItem("side" + i.toString())));
+        }
+    }
+
+    if (needShift) {
+        shiftItems.push(itinerary);
+
+        for (var i = 0; i < 3; i++) {
+            localStorage.setItem("side" + i.toString(), JSON.stringify(shiftItems[i]));
+        }
+
+        clearSideCards();
+        createSideCards();
+    }
+}
+
+function createSideCards() {
+    var iteration = 0;
+    currentSideCards.length = 0;
+
+    if (!(localStorage.getItem("side0") === null &&
+            localStorage.getItem("side1") === null &&
+            localStorage.getItem("side2") === null))
+    {
+        var loadSideImages = setInterval(function () {
+            if (iteration < 3) {
+                if (!(localStorage.getItem("side" + iteration.toString()) === null))
+                {
+                    const image = document.createElement('img');
+                    const name = document.createElement('h4');
+
+                    var currentItin = JSON.parse(localStorage.getItem('side' + iteration.toString()));
+                    currentSideCards.push(currentItin);
+
+                    image.setAttribute('style', 'position: absolute; margin: auto; height: 100%; width: 100%; object-fit: cover;');
+
+                    if (currentItin[1].image !== './assets/images/noImg.png') {
+                        image.setAttribute('crossOrigin', 'anonymous');
+                        image.setAttribute('referrerPolicy', 'origin');
+                    }
+
+                    image.src = currentItin[1].image;
+
+                    name.innerText = currentItin[0].name;
+                    name.classList.add('text-center');
+
+                    switch (iteration){
+                        case 0:
+                            sideCardOne.appendChild(image);
+                            sideCardOne.appendChild(name);
+                            sideCardThree.setAttribute('data-number', iteration);
+                            break;
+                        case 1:
+                            sideCardTwo.appendChild(image);
+                            sideCardTwo.appendChild(name);
+                            sideCardThree.setAttribute('data-number', iteration);
+                            break;
+                        case 2:
+                            sideCardThree.appendChild(image);
+                            sideCardThree.appendChild(name);
+                            sideCardThree.setAttribute('data-number', iteration);
+                            break;
+                    }
+                }
+
+                iteration++;
+            }
+            else {
+                clearInterval(loadSideImages);
+            };
+        }, 5);
+    }
+};
+
+/*function writeSaveFile(i) {
+    const fs = require('fs')
+    thisItin = JSON.parse(localStorage.getItem("side" + iteration.toString()));
+
+    fs.writeFile('./assets/text/itinerary.txt', 
+                    'City: ' + thisItin[0].name + '\nHotel info: \n\nName: ' + thisItin[1].name + '\nAddress: ' + thisItin[1].address + '\nPrice: ' + thisItin[1].price + '\nRating: ' + thisItin[1].rating + '\n\nFirst point of interest: \n\nName: ' + thisItin[2].name + '\nAddress: ' + thisItin[2].address + '\nPrice: ' + thisItin[2].price + '\nRating: ' + thisItin[2].rating + '\n\nSecond point of interest: \n\nName: ' + thisItin[3].name + '\nAddress: ' + thisItin[3].address + '\nPrice: ' + thisItin[3].price + '\nRating: ' + thisItin[3].rating + '\n\nThird point of interest: \n\nName: ' + thisItin[4].name + '\nAddress: ' + thisItin[4].address + '\nPrice: ' + thisItin[4].price + '\nRating: ' + thisItin[4].rating + '\n\nFourth point of interest: \n\nName: ' + thisItin[5].name + '\nAddress: ' + thisItin[5].address + '\nPrice: ' + thisItin[5].price + '\nRating: ' + thisItin[5].rating,
+                    function(){console.log('done')});
+
+    
+}*/
+
+function clearSideCards() {
+    sideCardOne.innerHTML = '';
+    sideCardTwo.innerHTML = '';
+    sideCardThree.innerHTML = '';
 };
 
 function toggleSlideover() {

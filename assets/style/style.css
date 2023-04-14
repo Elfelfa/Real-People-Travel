@@ -118,14 +118,14 @@ body {
     border: 5px solid var(--text);
 }
 
-.dCard img {
+.dCard img, .sCard img {
     border-radius: inherit;
     position: absolute;
     pointer-events: none;
 
 }
 
-.dCard h4 {
+.dCard h4, .sCard h4 {
     position: absolute;
     left: 10px;
     right: 10px;
