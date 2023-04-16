@@ -12,6 +12,13 @@ If your answer is yes (and we all know it is), then **Real People Travel** is ju
 * Brandon Morgan [brandon6457](https://github.com/brandon6457)
 * Keely Sherman [keelyybug](https://github.com/keelyybug)
 
+## Instructions
+
+* IMPORTANT!!!
+* Please disable any ad blocker you have activated before using this website. Ad blockers break google's maps APIs and will cause it to not function.
+
+   When loading the website you will be greeted with a splash page. Click on "Let's Plan!" to begin. Enter your name and press the button. Next, enter the city you wish to vacation at and press the button. You will be greeted with cards with hotel information. Press refresh to refresh the listed hotels, or select one. It will then request your to pick four points of interest. Select them one at a time. When finished, a map will appear centered on your selected city with all of your points of interest mapped around it. Press "Save itinerary" to save the itinerary to the local storage. If you would like to create another, select "Let's plan again" on the page that appears.
+
 ## User Story
 
 
